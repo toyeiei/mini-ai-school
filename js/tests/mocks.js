@@ -170,8 +170,16 @@ function setupMocks() {
     mockFetchError = null;
     pendingDOMContentLoaded = null;
     mockAbortControllerCalls = [];
+    const mockLocalStorage = {};
 
     global.window = { location: { search: '' } };
+
+    global.localStorage = {
+        getItem(key) { return mockLocalStorage[key] || null; },
+        setItem(key, value) { mockLocalStorage[key] = value; },
+        removeItem(key) { delete mockLocalStorage[key]; },
+        clear() { Object.keys(mockLocalStorage).forEach(k => delete mockLocalStorage[k]); }
+    };
 
     global.document = {
         querySelector(selector) { return mockDOM.body.querySelector(selector); },

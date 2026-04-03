@@ -96,6 +96,176 @@ function initLessonNavigation(config) {
     const scrollContainer = document.querySelector('.content');
     let currentController = null;
 
+    // Lesson completion tracking
+    function getStorageKey() {
+        return 'completed_lessons_' + config._courseId;
+    }
+
+    function getCompletedLessons() {
+        try {
+            return JSON.parse(localStorage.getItem(getStorageKey()) || '[]');
+        } catch {
+            return [];
+        }
+    }
+
+    function markLessonComplete(lessonId) {
+        const completed = getCompletedLessons();
+        if (!completed.includes(lessonId)) {
+            completed.push(lessonId);
+            localStorage.setItem(getStorageKey(), JSON.stringify(completed));
+        }
+        updateLessonCompletionUI();
+        checkCourseCompletion();
+    }
+
+    function isLessonComplete(lessonId) {
+        return getCompletedLessons().includes(lessonId);
+    }
+
+    function updateLessonCompletionUI() {
+        const completed = getCompletedLessons();
+        lessonLinks.forEach(link => {
+            const lessonId = link.getAttribute('data-lesson');
+            if (completed.includes(lessonId)) {
+                link.classList.add('completed');
+            }
+        });
+    }
+
+    function checkCourseCompletion() {
+        const totalLessons = config.lessons.length;
+        const completed = getCompletedLessons().length;
+        if (completed >= totalLessons) {
+            showCertificateButton();
+        }
+    }
+
+    function showCertificateButton() {
+        const existingBtn = document.querySelector('.certificate-btn');
+        if (existingBtn) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'certificate-btn';
+        btn.textContent = 'Get Certificate';
+        btn.addEventListener('click', () => openCertificateModal(config));
+        document.querySelector('.sidebar').appendChild(btn);
+    }
+
+    function openCertificateModal(config) {
+        const modal = document.createElement('div');
+        modal.className = 'certificate-modal';
+        modal.innerHTML = `
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close">&times;</button>
+                <h2>Get Your Certificate</h2>
+                <p>Enter your name to generate your certificate of completion.</p>
+                <input type="text" class="name-input" placeholder="Your full name" maxlength="50" />
+                <button class="generate-btn">Generate Certificate</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        const backdrop = modal.querySelector('.modal-backdrop');
+        const closeBtn = modal.querySelector('.modal-close');
+        const nameInput = modal.querySelector('.name-input');
+        const generateBtn = modal.querySelector('.generate-btn');
+
+        function closeModal() {
+            modal.remove();
+        }
+
+        backdrop.addEventListener('click', closeModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        generateBtn.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            if (name.length < 2) {
+                nameInput.focus();
+                return;
+            }
+            closeModal();
+            generateCertificate(config, name);
+        });
+
+        nameInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') generateBtn.click();
+        });
+
+        nameInput.focus();
+    }
+
+    function generateCertificate(config, studentName) {
+        // Sanitize name - escape HTML entities
+        const safeName = studentName
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+
+        const completionDate = new Date().toLocaleDateString('en-US', {
+            month: 'long',
+            year: 'numeric'
+        });
+
+        const certHTML = `
+            <div class="certificate-wrapper">
+                <div id="confetti"></div>
+                <div class="certificate" id="certificate">
+                    <div class="cert-header">
+                        <div class="cert-logo">MiniMax AI School</div>
+                        <div class="cert-title">Certificate of Completion</div>
+                    </div>
+                    <div class="cert-body">
+                        <p class="cert-presents">This certifies that</p>
+                        <h1 class="cert-name">${safeName}</h1>
+                        <p class="cert-completes">has successfully completed</p>
+                        <h2 class="cert-course">${config.title}</h2>
+                        <p class="cert-meta">${config.lessons.length} lessons &bull; ${completionDate}</p>
+                    </div>
+                    <div class="cert-footer">
+                        <div class="cert-signature">
+                            <span class="sig-line"></span>
+                            <span class="sig-label">Authorized Signature</span>
+                        </div>
+                        <div class="cert-school">MiniMax AI School</div>
+                    </div>
+                </div>
+                <div class="cert-actions">
+                    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+                    <button class="close-btn" onclick="document.querySelector('.cert-overlay').remove()">Close</button>
+                </div>
+            </div>
+        `;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'cert-overlay';
+        overlay.innerHTML = certHTML;
+        document.body.appendChild(overlay);
+
+        // Trigger confetti
+        setTimeout(() => launchConfetti(), 100);
+    }
+
+    function launchConfetti() {
+        const confettiContainer = document.getElementById('confetti');
+        if (!confettiContainer) return;
+
+        const colors = ['#6c5ce7', '#f8f8f2', '#569cd6', '#ce9178', '#6a9955', '#dcdcaa'];
+        const confettiCount = 100;
+
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 0.5 + 's';
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            confettiContainer.appendChild(confetti);
+        }
+    }
+
     function getLessonPath(lessonId) {
         return '/courses/' + config._courseId + '/lessons/' + lessonId + '.md';
     }
@@ -140,6 +310,9 @@ function initLessonNavigation(config) {
 
             contentArea.innerHTML = sanitizeHTML(marked.parse(markdown));
 
+            // Mark lesson as complete
+            markLessonComplete(filename);
+
             if (scrollContainer) {
                 scrollContainer.scrollTop = 0;
             }
@@ -169,6 +342,10 @@ function initLessonNavigation(config) {
             loadLesson(lesson);
         });
     });
+
+    // Initialize UI
+    updateLessonCompletionUI();
+    checkCourseCompletion();
 
     const firstLesson = document.querySelector('.lesson-list a.active');
     if (firstLesson) {

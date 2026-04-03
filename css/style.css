@@ -104,6 +104,340 @@ body {
     box-shadow: inset 3px 0 0 var(--accent);
 }
 
+/* Lesson completion indicators */
+.lesson-list li a.completed {
+    position: relative;
+}
+
+.lesson-list li a.completed::before {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: #4ec9b0;
+    border-radius: 50%;
+}
+
+/* Certificate button */
+.certificate-btn {
+    margin: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+.certificate-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.certificate-btn:active {
+    transform: translateY(0);
+}
+
+/* Modal styles */
+.certificate-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.modal-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted, #666);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.name-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color var(--transition-speed);
+}
+
+.name-input:focus {
+    border-color: var(--accent);
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-speed);
+}
+
+.generate-btn:hover {
+    background: var(--accent-hover);
+}
+
+/* Certificate overlay */
+.cert-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.certificate-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    animation: confetti-fall 3s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+/* Certificate design */
+.certificate {
+    background: #fff;
+    padding: 3rem 4rem;
+    border: 3px solid var(--accent);
+    border-radius: 4px;
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 0 8px rgba(108, 92, 231, 0.1);
+}
+
+.cert-header {
+    margin-bottom: 2rem;
+}
+
+.cert-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.cert-title {
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.cert-body {
+    padding: 2rem 0;
+}
+
+.cert-presents,
+.cert-completes {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.cert-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 1rem 0 1.5rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.cert-course {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0.5rem 0;
+}
+
+.cert-meta {
+    color: #999;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.cert-footer {
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.cert-signature {
+    text-align: center;
+}
+
+.sig-line {
+    display: block;
+    width: 150px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 0.25rem;
+}
+
+.sig-label {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.cert-school {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.cert-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.print-btn,
+.close-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-speed);
+}
+
+.print-btn {
+    background: var(--accent);
+    color: #fff;
+}
+
+.print-btn:hover {
+    background: var(--accent-hover);
+}
+
+.close-btn {
+    background: #eee;
+    color: var(--text);
+}
+
+.close-btn:hover {
+    background: #ddd;
+}
+
+/* Print styles */
+@media print {
+    .cert-overlay {
+        background: #fff;
+        position: static;
+    }
+
+    .cert-actions {
+        display: none;
+    }
+
+    .certificate {
+        box-shadow: none;
+        border: 2px solid #333;
+        margin: 0;
+    }
+
+    #confetti {
+        display: none;
+    }
+}
+
 .lesson-list {
     flex: 1;
     overflow-y: auto;
