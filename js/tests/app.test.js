@@ -56,7 +56,9 @@ TestRunner.describe('App initialization', () => {
 
     TestRunner.it('should render all lesson links from config', () => {
         init();
-        assertEqual(getMockDOM().lessonLinks.length, 3);
+        // Lesson links are <a> elements with data-lesson attribute
+        const lessonLinks = getMockDOM().lessonLinks.filter(l => l.getAttribute('data-lesson'));
+        assertEqual(lessonLinks.length, 3);
     });
 
     TestRunner.it('should set first lesson link as active', () => {

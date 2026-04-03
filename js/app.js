@@ -47,7 +47,10 @@ function getCourseId() {
 }
 
 function renderSidebar(sidebarEl, config) {
-    sidebarEl.innerHTML = '';
+    // Clear existing content
+    while (sidebarEl.firstChild) {
+        sidebarEl.removeChild(sidebarEl.firstChild);
+    }
 
     // Home button
     const homeLink = document.createElement('a');

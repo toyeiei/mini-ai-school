@@ -46,9 +46,26 @@ function createElement(tag, attrs = {}) {
         removeAttribute(name) { delete this.attributes[name]; },
         appendChild(child) {
             this.children.push(child);
-            this.innerHTML += child.textContent || '';
-            this.textContent += child.textContent || '';
+            child.parentNode = this;
+            this._innerHTML = (this._innerHTML || '') + (child.textContent || '');
+            this.textContent = (this.textContent || '') + (child.textContent || '');
             return child;
+        },
+
+        removeChild(child) {
+            const index = this.children.indexOf(child);
+            if (index !== -1) {
+                this.children.splice(index, 1);
+                child.parentNode = null;
+            }
+            return child;
+        },
+
+        get innerHTML() { return this._innerHTML || ''; },
+        set innerHTML(val) {
+            this._innerHTML = val;
+            this.textContent = val;
+            this.children = [];
         },
         querySelector(selector) {
             for (const child of this.children) {
