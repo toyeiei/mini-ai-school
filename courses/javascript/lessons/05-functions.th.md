@@ -11,7 +11,7 @@ function greet(name) {
     return 'Hello, ' + name + '!';
 }
 
-// เรียก function
+// Call the function
 let message = greet('Alice');
 console.log(message); // "Hello, Alice!"
 ```
@@ -21,11 +21,11 @@ console.log(message); // "Hello, Alice!"
 Parameters คือตัวแทนในนิยามของ function Arguments คือค่าจริงที่ส่งเข้าไปเมื่อเรียก:
 
 ```javascript
-function add(a, b) {  // a และ b คือ parameters
+function add(a, b) {  // a and b are parameters
     return a + b;
 }
 
-add(5, 3);  // 5 และ 3 คือ arguments
+add(5, 3);  // 5 and 3 are arguments
 ```
 
 ## Return Values
@@ -59,7 +59,7 @@ greet('Sam');   // "Welcome, Sam"
 รูปแบบย่อที่กระชับกว่า:
 
 ```javascript
-// แบบดั้งเดิม
+// Traditional
 function square(x) {
     return x * x;
 }
@@ -67,7 +67,7 @@ function square(x) {
 // Arrow function
 const square = (x) => x * x;
 
-// หลาย parameters
+// With multiple parameters
 const add = (a, b) => a + b;
 ```
 
@@ -78,11 +78,11 @@ const add = (a, b) => a + b;
 ```javascript
 function test() {
     let localVar = 'I am local';
-    console.log(localVar); // ทำงานได้
+    console.log(localVar); // Works
 }
 
 test();
-console.log(localVar); // Error! ไม่ได้กำหนดไว้
+console.log(localVar); // Error! Not defined
 ```
 
 ## แนวปฏิบัติที่ดี

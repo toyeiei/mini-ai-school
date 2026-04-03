@@ -135,13 +135,13 @@ Big task: "Build user authentication"
 ### Tracking Progress
 
 ```
-## วันนี้
+## Today
 - [x] User model
 - [x] Registration form
-- [ ] Email validation (กำลังทำ)
+- [ ] Email validation (in progress)
 - [ ] Password hashing
 
-## พรุ่งนี้
+## Tomorrow
 - [ ] Login endpoint
 - [ ] Session management
 ```

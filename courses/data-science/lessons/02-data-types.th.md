@@ -133,13 +133,13 @@ height = -1         # Sentinel value
 ```
 Data
 ├── Numeric
-│   ├── Continuous (ทศนิยมได้)
-│   └── Discrete (จำนวนเต็ม)
+│   ├── Continuous (any decimal)
+│   └── Discrete (whole numbers)
 ├── Categorical
-│   ├── Nominal (ไม่มีลำดับ)
-│   └── Ordinal (มีลำดับ)
-├── Time Series (เรียงตามเวลา)
-└── Text (ไม่มีโครงสร้าง)
+│   ├── Nominal (no order)
+│   └── Ordinal (has order)
+├── Time Series (ordered by time)
+└── Text (unstructured)
 ```
 
 การเข้าใจ data types ของคุณเป็นขั้นตอนแรกสู่การวิเคราะห์ที่ถูกต้อง

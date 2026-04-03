@@ -12,28 +12,28 @@
 ## Naming Conventions
 
 ```javascript
-// ตัวแปรและฟังก์ชัน: camelCase
+// Variables and functions: camelCase
 let userName = 'Alice';
 function calculateTotal() {}
 
-// ค่าคงที่: UPPER_SNAKE_CASE
+// Constants: UPPER_SNAKE_CASE
 const MAX_RETRIES = 3;
 const API_URL = 'https://api.example.com';
 
 // Classes: PascalCase
 class UserAccount {}
 
-// สิ่งที่เป็นส่วนตัว: ใช้ขีดล่างนำหน้า
+// Private things: underscore prefix
 let _privateVar = 'hidden';
 ```
 
 ## หลีกเลี่ยง Magic Numbers
 
 ```javascript
-// ไม่ดี
+// Bad
 if (userAge > 18) {}
 
-// ดี
+// Good
 const LEGAL_AGE = 18;
 if (userAge > LEGAL_AGE) {}
 ```
@@ -43,30 +43,30 @@ if (userAge > LEGAL_AGE) {}
 คืนค่าก่อนเพื่อหลีกเลี่ยงโค้ดที่ซ้อนกันลึกเกินไป:
 
 ```javascript
-// ไม่ดี
+// Bad
 function process(data) {
     if (data) {
         if (data.valid) {
-            // ซ้อนกันลึกเกินไป
+            // deep nesting
         }
     }
 }
 
-// ดี
+// Good
 function process(data) {
     if (!data) return;
     if (!data.valid) return;
-    // โค้ดหลัก
+    // main logic
 }
 ```
 
 ## ใช้เงื่อนไขที่สื่อความหมาย
 
 ```javascript
-// ไม่ดี
+// Bad
 if (x && y && !z) {}
 
-// ดี
+// Good
 const isValid = x && y && !z;
 if (isValid) {}
 ```
@@ -76,12 +76,12 @@ if (isValid) {}
 แต่ละ function ควรทำสิ่งหนึ่งสิ่งให้ดี:
 
 ```javascript
-// ไม่ดี
+// Bad
 function handleForm() {
     // validate, sanitize, save, send email, update UI...
 }
 
-// ดี
+// Good
 function validateForm() {}
 function sanitizeInput() {}
 function saveToDatabase() {}
@@ -92,7 +92,7 @@ function saveToDatabase() {}
 ต้องคาดหวังเสมอว่าอะไรอาจผิดพลาด:
 
 ```javascript
-// ใช้ try-catch เสมอกับ async/await
+// Always use try-catch with async/await
 async function fetchData() {
     try {
         let response = await fetch(url);
@@ -110,12 +110,12 @@ async function fetchData() {
 เขียน comments ที่อธิบาย *ทำไม* ไม่ใช่ *ทำอะไร*:
 
 ```javascript
-// ไม่ดี
-// เพิ่ม counter
+// Bad
+// Increment counter
 i++;
 
-// ดี
-// ชดเชย off-by-one error ใน API
+// Good
+// Compensate for off-by-one error in API
 pageNum++;
 ```
 
@@ -124,12 +124,12 @@ pageNum++;
 เขียนโค้ดที่ทดสอบได้:
 
 ```javascript
-// ทดสอบยาก
+// Hard to test
 function handleClick() {
     document.getElementById('output').innerHTML = calculate();
 }
 
-// ทดสอบง่าย
+// Easy to test
 function calculate() { return 1 + 1; }
 function display(element, value) { element.innerHTML = value; }
 ```

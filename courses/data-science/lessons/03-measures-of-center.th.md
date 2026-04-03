@@ -17,7 +17,7 @@ print(f"Mean: {mean_sales}")  # Output: 157.7
 ### สูตร Mean
 
 ```python
-Mean = (ผลรวมของค่าทั้งหมด) / (จำนวนค่า)
+Mean = (Sum of all values) / (Count of values)
 ```
 
 ### Mean ไวต่อ Outlier

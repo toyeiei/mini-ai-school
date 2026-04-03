@@ -42,10 +42,10 @@ SELECT name, email FROM users;
 Comment ช่วยให้คุณอธิบาย query ของคุณ:
 
 ```
--- Query นี้ดึงข้อมูลผู้ใช้ทั้งหมด
+-- This query gets all users
 SELECT * FROM users;
 
-SELECT email FROM users; /* ดึงเฉพาะอีเมล */
+SELECT email FROM users; /* Get emails only */
 ```
 
 ## ตัวพิมพ์ใหญ่-เล็ก
@@ -53,7 +53,7 @@ SELECT email FROM users; /* ดึงเฉพาะอีเมล */
 SQL keyword ไม่สนใจตัวพิมพ์ใหญ่-เล็ก แต่มักนิยมใช้ตัวพิมพ์ใหญ่:
 
 ```
--- ทั้งหมดนี้ใช้ได้:
+-- All of these work:
 SELECT * FROM users;
 select * from users;
 SeLeCt * FrOm users;
@@ -80,13 +80,13 @@ SELECT name FROM users;
 ลอง query เหล่านี้:
 
 ```
--- ดึงสินค้าทั้งหมด
+-- Get all products
 SELECT * FROM products;
 
--- ดึงชื่อและราคาสินค้า
+-- Get product names and prices
 SELECT name, price FROM products;
 
--- ดึงออเดอร์ทั้งหมด
+-- Get all orders
 SELECT * FROM orders;
 ```
 

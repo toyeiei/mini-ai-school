@@ -5,21 +5,21 @@ HTML elements คือส่วนประกอบของหน้าเว
 ## Elements ที่ใช้บ่อย
 
 ```html
-<!-- หัวข้อ -->
-<h1>หัวข้อหลัก</h1>
-<h2>หัวข้อรอง</h2>
+<!-- Headings -->
+<h1>Main Title</h1>
+<h2>Subtitle</h2>
 
-<!-- ย่อหน้า -->
-<p>นี่คือย่อหน้าข้อความ</p>
+<!-- Paragraph -->
+<p>This is a paragraph of text.</p>
 
-<!-- ตัวหนาและตัวเอียง -->
-<p><strong>สำคัญ</strong> ข้อความตรงนี้</p>
-<p><em>เน้น</em> ข้อความตรงนี้</p>
+<!-- Bold and Italic -->
+<p><strong>Important</strong> text here.</p>
+<p><em>Emphasized</em> text here.</p>
 
-<!-- รายการ -->
+<!-- Lists -->
 <ul>
-    <li>รายการแรก</li>
-    <li>รายการที่สอง</li>
+    <li>First item</li>
+    <li>Second item</li>
 </ul>
 ```
 
@@ -35,18 +35,18 @@ HTML elements คือส่วนประกอบของหน้าเว
 
 ```html
 <div>
-    <h2>หัวข้อ</h2>
-    <p>ย่อหน้าที่มี <strong>ตัวหนา</strong></p>
+    <h2>Title</h2>
+    <p>Paragraph with <strong>bold</strong> text.</p>
 </div>
 ```
 
 ## Semantic Elements
 
 ```html
-<header>ส่วนหัวเว็บ</header>
-<nav>ลิงก์นำทาง</nav>
-<main>เนื้อหาหลัก</main>
-<footer>ส่วนท้ายเว็บ</footer>
+<header>Site header</header>
+<nav>Navigation links</nav>
+<main>Main content</main>
+<footer>Site footer</footer>
 ```
 
 Semantic elements อธิบายความหมาย ช่วย accessibility และ SEO

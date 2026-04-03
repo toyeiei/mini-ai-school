@@ -42,17 +42,17 @@ body {
 ## ค่าสี
 
 ```css
-/* ชื่อสี */
+/* Named colors */
 color: red;
 
 /* Hex codes */
 color: #ff0000;
-color: #f00;  /* ย่อ */
+color: #f00;  /* Short form */
 
 /* RGB */
 color: rgb(255, 0, 0);
 
-/* RGBA (มี transparency) */
+/* RGBA (with transparency) */
 color: rgba(255, 0, 0, 0.5);
 ```
 

@@ -16,13 +16,13 @@ SELECT * FROM users ORDER BY name;
 - **DESC** - จากมากไปน้อย, Z ถึง A
 
 ```
--- ผู้ใช้ที่อายุน้อยที่สุดก่อน
+-- Youngest users first
 SELECT * FROM users ORDER BY age ASC;
 
--- ผู้ใช้ที่อายุมากที่สุดก่อน
+-- Oldest users first
 SELECT * FROM users ORDER BY age DESC;
 
--- เรียงตามลำดับอักษรของเมือง (Z ถึง A)
+-- Alphabetical by city (Z to A)
 SELECT * FROM users ORDER BY city DESC;
 ```
 
@@ -56,10 +56,10 @@ SELECT * FROM users ORDER BY city ASC, name ASC;
 ดึงเฉพาะจำนวนแถวที่ต้องการ:
 
 ```
--- ดึงผู้ใช้ 10 คนแรก
+-- Get the first 10 users
 SELECT * FROM users LIMIT 10;
 
--- ดึงผู้ใช้ 5 คนที่อายุมากที่สุด
+-- Get the top 5 oldest users
 SELECT * FROM users ORDER BY age DESC LIMIT 5;
 ```
 
@@ -68,7 +68,7 @@ SELECT * FROM users ORDER BY age DESC LIMIT 5;
 ข้ามแถวบางส่วนก่อนคืนผลลัพธ์:
 
 ```
--- ดึงผู้ใช้คนที่ 11-20 (หน้าที่ 2 จาก 10 คน)
+-- Get users 11-20 (second page of 10)
 SELECT * FROM users ORDER BY name LIMIT 10 OFFSET 10;
 ```
 
@@ -77,9 +77,9 @@ SELECT * FROM users ORDER BY name LIMIT 10 OFFSET 10;
 Database บางตัวรองรับ syntax นี้:
 
 ```
--- ดึงผู้ใช้คนที่ 6-10
+-- Get users 6-10
 SELECT * FROM users LIMIT 5 OFFSET 5;
--- หรือ
+-- or
 SELECT * FROM users LIMIT 5, 5;
 ```
 
@@ -88,27 +88,27 @@ SELECT * FROM users LIMIT 5, 5;
 ### Top N ตามค่า
 
 ```
--- สินค้า 3 อันดับที่แพงที่สุด
+-- 3 most expensive products
 SELECT * FROM products ORDER BY price DESC LIMIT 3;
 ```
 
 ### Bottom N ตามค่า
 
 ```
--- สินค้า 3 อันดับที่ถูกที่สุด
+-- 3 cheapest products
 SELECT * FROM products ORDER BY price ASC LIMIT 3;
 ```
 
 ### Pagination
 
 ```
--- หน้า 1
+-- Page 1
 SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 0;
 
--- หน้า 2
+-- Page 2
 SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 10;
 
--- หน้า 3
+-- Page 3
 SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 20;
 ```
 
@@ -117,7 +117,7 @@ SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 20;
 ค่า NULL มักถูกเรียงก่อนในลำดับน้อยไปมาก และหลังในลำดับมากไปน้อย:
 
 ```
--- ผู้ใช้ที่มีเมืองก่อน แล้วตามด้วยที่ไม่มี
+-- Users with city first, then those without
 SELECT * FROM users ORDER BY city ASC NULLS FIRST;
 ```
 

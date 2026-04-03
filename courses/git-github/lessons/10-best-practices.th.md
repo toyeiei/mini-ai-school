@@ -5,7 +5,7 @@
 ## Commit บ่อยๆ
 
 ```
-# ดี: commits เล็กๆ ที่เน้นหนึ่งอย่าง
+# Good: small, focused commits
 git commit -m "Add user login form"
 git commit -m "Style login form"
 git commit -m "Add login validation"
@@ -14,10 +14,10 @@ git commit -m "Add login validation"
 ## เขียนข้อความที่ดี
 
 ```bash
-หัวข้อ (ไม่เกิน 50 ตัวอักษร)
+Subject line (under 50 chars)
 
-ย่อหน้าอธิบาย WHY และ WHAT
-ไม่ใช่ HOW
+Body paragraph explaining WHY and WHAT.
+Not HOW.
 ```
 
 ตัวอย่าง:
@@ -39,13 +39,13 @@ git commit -m "Add user authentication
 ## รักษาความสะอาด
 
 ```
-# ก่อน merge อัปเดตจาก main ก่อน
+# Before merging, sync with main
 git checkout main
 git pull
 git checkout feature-branch
 git merge main
 
-# ลบ branches ที่ merge แล้ว
+# Delete merged branches
 git branch -d old-feature
 ```
 
@@ -72,8 +72,8 @@ build/
 ## Push สม่ำเสมอ
 
 ```bash
-git push  # อัปโหลด commits
-git pull  # ดาวน์โหลดการเปลี่ยนแปลง
+git push  # Upload commits
+git pull  # Download changes
 ```
 
 อย่าให้ commits สะสมในเครื่อง

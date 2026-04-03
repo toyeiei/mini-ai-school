@@ -31,13 +31,13 @@ person['age']; // 30
 ```javascript
 let user = { name: 'Bob' };
 
-// เพิ่ม property
+// Add property
 user.email = 'bob@example.com';
 
-// เปลี่ยน property
+// Change property
 user.name = 'Robert';
 
-// ลบ property
+// Delete property
 delete user.name;
 ```
 
@@ -96,13 +96,13 @@ person.greet();  // 'Hello, I am Alice'
 ```javascript
 let obj = { a: 1, b: 2, c: 3 };
 
-// รับ keys ทั้งหมด
+// Get all keys
 Object.keys(obj);   // ['a', 'b', 'c']
 
-// รับ values ทั้งหมด
+// Get all values
 Object.values(obj); // [1, 2, 3]
 
-// รับ entries ทั้งหมด
+// Get all entries
 Object.entries(obj); // [['a', 1], ['b', 2], ['c', 3]]
 ```
 
@@ -113,11 +113,11 @@ Object.entries(obj); // [['a', 1], ['b', 2], ['c', 3]]
 ```javascript
 let person = { name: 'Alice', age: 30 };
 
-// ก่อน
+// Before
 let name = person.name;
 let age = person.age;
 
-// หลัง (destructuring)
+// After (destructuring)
 let { name, age } = person;
 ```
 

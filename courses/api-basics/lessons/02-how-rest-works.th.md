@@ -34,11 +34,11 @@ Resources เป็นคำนาม (users, posts) ไม่ใช่คำก
 ```
 Client: GET /users/123
        ↓
-Server: ประมวลผลคำขอ
+Server: Processes request
        ↓
-Server: ส่งข้อมูลกลับเป็น JSON
+Server: Returns JSON response
        ↓
-Client: รับและใช้ข้อมูล
+Client: Receives and uses data
 ```
 
 ## HTTP Status Codes

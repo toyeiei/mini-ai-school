@@ -47,10 +47,10 @@ Constraints กำหนดกฎเกี่ยวกับข้อมูล:
 
 ```sql
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY,        -- ตัวระบุเฉพาะ
-    email TEXT UNIQUE NOT NULL,    -- ต้องมีค่า และไม่ซ้ำกัน
-    name TEXT NOT NULL,            -- ต้องมีค่า
-    age INTEGER DEFAULT 0          -- ค่าเริ่มต้นเป็น 0 ถ้าไม่ระบุ
+    id INTEGER PRIMARY KEY,        -- Unique identifier
+    email TEXT UNIQUE NOT NULL,    -- Must exist, can't duplicate
+    name TEXT NOT NULL,            -- Must exist
+    age INTEGER DEFAULT 0          -- Defaults to 0 if not specified
 );
 ```
 

@@ -32,7 +32,7 @@ Normalization คือการจัดระเบียบข้อมูล
 แต่ละเซลล์มีค่าเดียว ไม่ใช่รายการหรือกลุ่มที่ซ้ำ
 
 ```
--- ไม่ดี: หลายค่าในหนึ่งเซลล์
+-- Bad: multiple values in one cell
 orders_bad
 +------+------------------+
 | id   | products         |
@@ -40,7 +40,7 @@ orders_bad
 | 1    | Laptop, Mouse    |
 +------+------------------+
 
--- ดี: หนึ่งค่าต่อเซลล์ แยกเป็นแถวต่างหาก
+-- Good: one value per cell, separate rows
 orders_good
 +------+-------------+
 | id   | product     |
@@ -55,7 +55,7 @@ orders_good
 ทุกคอลัมน์ที่ไม่ใช่ key ต้องขึ้นกับ primary key ทั้งหมด
 
 ```
--- ไม่ดี: product_name ขึ้นกับ product_id ไม่ใช่ order_id
+-- Bad: product_name depends on product_id, not order_id
 order_items_bad
 +-------------+-------------+-------------+-------------+
 | order_id    | product_id  | product_name| quantity    |
@@ -63,9 +63,9 @@ order_items_bad
 | 1           | 1           | Laptop      | 1           |
 | 1           | 2           | Mouse       | 2           |
 +-------------+-------------+-------------+-------------+
--- product_name ขึ้นกับ product_id (เพียงส่วนหนึ่งของ PK)
+-- product_name depends on product_id (only part of PK)
 
--- ดี: แยกตาราง
+-- Good: separate tables
 orders
 +----+
 | id |
@@ -95,7 +95,7 @@ order_items
 คอลัมน์ที่ไม่ใช่ key ต้องขึ้นกับ primary key เท่านั้น ไม่ขึ้นกับคอลัมน์อื่นที่ไม่ใช่ key
 
 ```
--- ไม่ดี: discount ขึ้นกับ category ไม่ใช่ product โดยตรง
+-- Bad: discount depends on category, not product directly
 products_bad
 +----+--------+-------------+------------+
 | id | name   | category    | discount   |
@@ -103,9 +103,9 @@ products_bad
 | 1  | Laptop | Electronics | 10%        |
 | 2  | Mouse  | Electronics | 10%        |
 +----+--------+-------------+------------+
--- discount มาจาก category ไม่ใช่ product
+-- discount is derived from category, not product
 
--- ดี: normalize discount เข้าไปใน categories
+-- Good: normalize discount into categories
 products
 +----+--------+-------------+
 | id | name   | category_id |

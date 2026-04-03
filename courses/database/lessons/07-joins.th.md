@@ -7,7 +7,7 @@
 ลองนึกภาพการเก็บข้อมูลออเดอร์:
 
 ```
--- ไม่ดี: ทั้งหมดในตารางเดียว ข้อมูลซ้ำซ้อนมาก
+-- Bad: All in one table, lots of repeated data
 orders table
 +--------+-------------+------------------+-------------+
 | id     | customer    | product          | customer_city|
@@ -17,7 +17,7 @@ orders table
 | 3      | Alice       | Keyboard         | New York   |
 +--------+-------------+------------------+-------------+
 
--- เมืองของ Alice ซ้ำในทุกออเดอร์!
+-- Alice's city is repeated for every order!
 ```
 
 การออกแบบที่ดีกว่า: แยกตาราง
@@ -145,7 +145,7 @@ WHERE c.email = 'alice@email.com';
 เชื่อมตารางกับตัวเอง:
 
 ```
--- หาผู้ใช้ที่อยู่เมืองเดียวกัน
+-- Find users who share the same city
 SELECT a.name, b.name, a.city
 FROM users a
 INNER JOIN users b ON a.city = b.city
@@ -159,10 +159,10 @@ WHERE a.id < b.id;
 ถ้าสองตารางมีคอลัมน์ชื่อเดียวกัน ให้ระบุตารางด้วย:
 
 ```
--- ผิดพลาด: id กำกวม
+-- Error: id is ambiguous
 SELECT id, email FROM orders o INNER JOIN customers c ON o.customer_id = c.id;
 
--- แก้ไข: ระบุตาราง
+-- Fixed: Specify table
 SELECT o.id, c.email FROM orders o INNER JOIN customers c ON o.customer_id = c.id;
 ```
 
@@ -171,7 +171,7 @@ SELECT o.id, c.email FROM orders o INNER JOIN customers c ON o.customer_id = c.i
 ถ้าไม่มี ON clause คุณจะได้ Cartesian product (ทุกแถวจับคู่กับทุกแถว):
 
 ```
--- 3 ออเดอร์ x 2 ลูกค้า = 6 แถว (น่าจะไม่ใช่สิ่งที่คุณต้องการ!)
+-- 3 orders x 2 customers = 6 rows (probably not what you want!)
 SELECT * FROM orders, customers;
 ```
 

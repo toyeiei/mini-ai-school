@@ -104,7 +104,7 @@ IQR = Q3 - Q1  # Interquartile range = 4.5
 ### Box Plot Visualization
 
 ```python
-    |-----------[  box  ]-----------|
+|-----------[  box  ]-----------|
 min              Q2            max
    |             |              |
    |---[-------o-|-------]------[+

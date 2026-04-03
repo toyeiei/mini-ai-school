@@ -7,7 +7,7 @@
 ### เริ่มจากแบบ Normalized
 
 ```
--- ดี: ตารางแบบ normalized
+-- Good: Normalized tables
 users (id, name, email)
 orders (id, user_id, date)
 order_items (id, order_id, product_id, quantity)
@@ -17,8 +17,8 @@ products (id, name, price)
 ### Denormalize เฉพาะเมื่อจำเป็น
 
 ```
--- เพิ่มข้อมูลซ้ำซ้อนเฉพาะเมื่อมีปัญหาประสิทธิภาพที่พิสูจน์แล้ว
-orders (id, user_id, date, total_amount)  -- total_amount เป็นค่า cache
+-- Only add redundant data if you have a proven performance issue
+orders (id, user_id, date, total_amount)  -- total_amount cached
 ```
 
 การ denormalize ก่อนเวลาอันควรจะสร้างปัญหาในการดูแลรักษา
@@ -28,10 +28,10 @@ orders (id, user_id, date, total_amount)  -- total_amount เป็นค่า 
 ### ระบุคอลัมน์ให้ชัดเจน
 
 ```
--- ไม่ดี: SELECT *
+-- Bad: SELECT *
 SELECT * FROM users WHERE id = 1;
 
--- ดี: ระบุชื่อคอลัมน์
+-- Good: Name the columns
 SELECT id, name, email FROM users WHERE id = 1;
 ```
 
@@ -43,10 +43,10 @@ SELECT id, name, email FROM users WHERE id = 1;
 ### ใช้ Alias ที่มีความหมาย
 
 ```
--- ไม่ดี
+-- Bad
 SELECT u.id, o.id FROM users u INNER JOIN orders o ON u.id = o.user_id;
 
--- ดี
+-- Good
 SELECT u.id AS user_id, o.id AS order_id
 FROM users u
 INNER JOIN orders o ON u.id = o.user_id;
@@ -57,12 +57,12 @@ INNER JOIN orders o ON u.id = o.user_id;
 ### อย่าไว้ใจ input จากผู้ใช้
 
 ```
--- ไม่ดี: เสี่ยงต่อ SQL injection
+-- Bad: SQL injection vulnerable
 "SELECT * FROM users WHERE name = '" + user_input + "'"
 
--- ดี: ใช้ parameterized queries
+-- Good: Use parameterized queries
 "SELECT * FROM users WHERE name = ?"
--- Parameter ถูกส่งแยกต่างหาก
+-- Parameter passed separately
 ```
 
 ### ปกป้องข้อมูลที่ละเอียดอ่อน
@@ -76,7 +76,7 @@ INNER JOIN orders o ON u.id = o.user_id;
 ### สร้าง Index อย่างมีเหตุผล
 
 ```
--- เพิ่ม index บนคอลัมน์ที่กรอง/เรียงลำดับบ่อย
+-- Add index on columns you filter/sort often
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_orders_user_id ON orders(user_id);
 ```
@@ -89,21 +89,21 @@ CREATE INDEX idx_orders_user_id ON orders(user_id);
 ### จำกัดผลลัพธ์
 
 ```
--- ไม่ดี: ดึงแถวทั้งหมด
+-- Bad: Get all rows
 SELECT * FROM logs;
 
--- ดี: แบ่งหน้า
+-- Good: Paginate
 SELECT * FROM logs ORDER BY created_at DESC LIMIT 100;
 ```
 
 ### หลีกเลี่ยง SELECT * ใน Join
 
 ```
--- ไม่ดี: ดึงคอลัมน์ที่ไม่จำเป็น
+-- Bad: Pulls unnecessary columns
 SELECT * FROM orders o
 INNER JOIN users u ON o.user_id = u.id;
 
--- ดี: เฉพาะคอลัมน์ที่ต้องการ
+-- Good: Only needed columns
 SELECT o.id, o.created_at, u.email FROM orders o
 INNER JOIN users u ON o.user_id = u.id;
 ```
@@ -113,10 +113,10 @@ INNER JOIN users u ON o.user_id = u.id;
 ### ทดสอบ Query ที่เปลี่ยนแปลงข้อมูล
 
 ```
--- ก่อนลบ ให้ select ก่อน
+-- Before deleting, select first
 SELECT * FROM users WHERE city = 'Closed';
 
--- จากนั้นค่อยลบ
+-- Then delete
 DELETE FROM users WHERE city = 'Closed';
 ```
 
@@ -126,7 +126,7 @@ DELETE FROM users WHERE city = 'Closed';
 -- SQLite backup
 sqlite3 database.db ".backup backup.db"
 
--- ส่งออกเป็น SQL
+-- Export to SQL
 sqlite3 database.db ".dump" > dump.sql
 ```
 
@@ -151,10 +151,10 @@ ALTER TABLE users ADD COLUMN city TEXT;
 ### ตรวจสอบ Error
 
 ```
--- หลัง CREATE TABLE ให้ตรวจสอบ
+-- After CREATE TABLE, verify
 SELECT * FROM sqlite_master WHERE type='table' AND name='users';
 
--- หลัง INSERT ให้ตรวจสอบจำนวนแถว
+-- After INSERT, check row count
 SELECT changes();
 ```
 
@@ -163,11 +163,11 @@ SELECT changes();
 ```sql
 BEGIN TRANSACTION;
 
--- หลาย operation ที่เกี่ยวข้องกัน
+-- Multiple related operations
 INSERT INTO orders (user_id) VALUES (1);
 UPDATE products SET stock = stock - 1 WHERE id = 1;
 
-COMMIT;  -- หรือ ROLLBACK ถ้าเกิด error
+COMMIT;  -- Or ROLLBACK if error
 ```
 
 ถ้าขั้นตอนใดขั้นตอนหนึ่งล้มเหลว transaction ทั้งหมดจะถูกยกเลิก

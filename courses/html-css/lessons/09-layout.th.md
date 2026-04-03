@@ -17,10 +17,10 @@ CSS layout ควบคุมตำแหน่ง elements บนหน้า
 ```css
 .flex-container {
     display: flex;
-    flex-direction: row;      /* หรือ column */
-    gap: 20px;                /* ช่องว่างระหว่าง items */
-    justify-content: center;  /* แกนหลัก */
-    align-items: center;      /* แกนขวาง */
+    flex-direction: row;      /* or column */
+    gap: 20px;                /* Space between items */
+    justify-content: center;  /* Main axis */
+    align-items: center;      /* Cross axis */
 }
 ```
 
@@ -28,9 +28,9 @@ CSS layout ควบคุมตำแหน่ง elements บนหน้า
 
 ```css
 .item {
-    flex-grow: 1;   /* ขยายเติมพื้นที่ */
-    flex-shrink: 0; /* ไม่ย่อ */
-    flex-basis: 200px; /* ขนาดเริ่มต้น */
+    flex-grow: 1;   /* Grow to fill space */
+    flex-shrink: 0; /* Don't shrink */
+    flex-basis: 200px; /* Initial size */
 }
 ```
 
@@ -67,7 +67,7 @@ nav {
 }
 
 .card {
-    flex: 1 1 300px;
+    flex: 1 1 300px; /* Grow, shrink, basis */
 }
 ```
 

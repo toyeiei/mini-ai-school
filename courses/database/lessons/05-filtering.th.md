@@ -24,16 +24,16 @@ SELECT * FROM users WHERE age > 25;
 ### ตัวอย่าง
 
 ```
--- ผู้ใช้ที่อายุ 30 ปีพอดี
+-- Users exactly 30 years old
 SELECT * FROM users WHERE age = 30;
 
--- ผู้ใช้ที่ไม่ได้อยู่ใน New York
+-- Users not in New York
 SELECT * FROM users WHERE city <> 'New York';
 
--- ผู้ใช้ที่อายุ 18 ปีขึ้นไป
+-- Users 18 or older
 SELECT * FROM users WHERE age >= 18;
 
--- สินค้าที่ราคาต่ำกว่า $50
+-- Products under $50
 SELECT * FROM products WHERE price < 50;
 ```
 
@@ -50,7 +50,7 @@ SELECT * FROM users WHERE city = 'Boston';
 Database ส่วนใหญ่ไม่สนใจตัวพิมพ์ใหญ่-เล็กสำหรับการเปรียบเทียบข้อความ:
 
 ```sql
-SELECT * FROM users WHERE city = 'boston';  -- ใช้ได้เช่นกัน
+SELECT * FROM users WHERE city = 'boston';  -- Also works
 ```
 
 ### การค้นหาด้วย Pattern (LIKE)
@@ -58,13 +58,13 @@ SELECT * FROM users WHERE city = 'boston';  -- ใช้ได้เช่นก
 หาค่าที่ตรงกับ pattern:
 
 ```
--- ชื่อที่ขึ้นต้นด้วย 'A'
+-- Names starting with 'A'
 SELECT * FROM users WHERE name LIKE 'A%';
 
--- อีเมลที่ลงท้ายด้วย @gmail.com
+-- Emails ending with @gmail.com
 SELECT * FROM users WHERE email LIKE '%@gmail.com';
 
--- ชื่อที่มี 'son' อยู่
+-- Names containing 'son'
 SELECT * FROM users WHERE name LIKE '%son%';
 ```
 
@@ -74,10 +74,10 @@ SELECT * FROM users WHERE name LIKE '%son%';
 - `_` ตรงกับอักขระเพียงหนึ่งตัว
 
 ```
--- 'A%' = ขึ้นต้นด้วย A
--- '%a' = ลงท้ายด้วย a
--- '%in%' = มี 'in' อยู่
--- '_all' = มี 4 ตัวอักษร ลงท้ายด้วย 'all'
+-- 'A%' = starts with A
+-- '%a' = ends with a
+-- '%in%' = contains 'in'
+-- '_all' = exactly 4 chars ending with 'all'
 ```
 
 ## หลายเงื่อนไข
@@ -112,10 +112,10 @@ WHERE (price > 100 AND stock > 10) OR category = 'Sale';
 ## การยกเว้นผลลัพธ์ (NOT)
 
 ```
--- ผู้ใช้ที่ไม่ได้อยู่ใน New York
+-- Users not from New York
 SELECT * FROM users WHERE NOT city = 'New York';
 
--- สินค้าที่ไม่มีในสต็อก
+-- Users not in stock
 SELECT * FROM products WHERE NOT stock > 0;
 ```
 
@@ -124,10 +124,10 @@ SELECT * FROM products WHERE NOT stock > 0;
 NULL หมายถึง "ไม่มีค่า" หรือ "ไม่ทราบ" ใช้ IS NULL หรือ IS NOT NULL:
 
 ```
--- ผู้ใช้ที่ไม่ได้ระบุเมือง
+-- Users with no city specified
 SELECT * FROM users WHERE city IS NULL;
 
--- ผู้ใช้ที่ระบุเมืองแล้ว
+-- Users with a city specified
 SELECT * FROM users WHERE city IS NOT NULL;
 ```
 
@@ -136,11 +136,11 @@ SELECT * FROM users WHERE city IS NOT NULL;
 ตรงกับค่าใดค่าหนึ่งในรายการ:
 
 ```
--- ผู้ใช้จากเมืองเหล่านี้
+-- Users from these cities
 SELECT * FROM users
 WHERE city IN ('New York', 'Boston', 'Chicago');
 
--- เท่ากับ:
+-- Same as:
 SELECT * FROM users
 WHERE city = 'New York'
    OR city = 'Boston'
@@ -152,10 +152,10 @@ WHERE city = 'New York'
 ตรงกับช่วง (รวมค่าปลายทั้งสองด้าน):
 
 ```
--- ผู้ใช้ที่อายุ 25 ถึง 35 ปี
+-- Users aged 25 to 35
 SELECT * FROM users WHERE age BETWEEN 25 AND 35;
 
--- เท่ากับ:
+-- Same as:
 SELECT * FROM users WHERE age >= 25 AND age <= 35;
 ```
 

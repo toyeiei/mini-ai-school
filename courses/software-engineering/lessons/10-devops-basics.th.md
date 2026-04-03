@@ -33,8 +33,8 @@ jobs:
 Deploy โค้ดที่ผ่านการตรวจสอบแล้วไปยัง environments อัตโนมัติ
 
 ```
-# Deploy to staging เมื่อ merge เข้า develop
-# Deploy to production เมื่อ merge เข้า main
+# Deploy to staging on merge to develop
+# Deploy to production on merge to main
 ```
 
 ## Environments
@@ -62,7 +62,7 @@ CMD ["node", "server.js"]
 ```
 
 ```
-# Build และ run
+# Build and run
 docker build -t myapp .
 docker run -p 3000:3000 myapp
 ```

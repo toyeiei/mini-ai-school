@@ -16,7 +16,7 @@ Testing ช่วยให้มั่นใจว่าโค้ดทำงา
 ทดสอบฟังก์ชันหรือ component แต่ละตัวแยกกัน
 
 ```javascript
-// ทดสอบฟังก์ชันเดียว
+// Test a single function
 function add(a, b) {
     return a + b;
 }
@@ -32,7 +32,7 @@ function testAdd() {
 ทดสอบว่า components ทำงานร่วมกันได้อย่างไร
 
 ```javascript
-// ทดสอบขั้นตอนการสมัครสมาชิก
+// Test user registration flow
 async function testRegistration() {
     const user = await registerUser('alice@example.com', 'password123');
     console.assert(user.email === 'alice@example.com');
@@ -45,7 +45,7 @@ async function testRegistration() {
 ทดสอบขั้นตอนทั้งหมดของแอปพลิเคชัน
 
 ```javascript
-// ทดสอบขั้นตอน login
+// Test login flow
 async function testLogin() {
     await browser.goto('/login');
     await browser.fill('#email', 'alice@example.com');
@@ -63,9 +63,9 @@ async function testLogin() {
 3. Refactor
 
 ```
-# Red - เขียน test ที่ล้มเหลว
-# Green - เขียนโค้ดขั้นต่ำ
-# Refactor - ปรับปรุงโค้ด
+# Red - Write failing test
+# Green - Write minimal code
+# Refactor - Improve code
 ```
 
 ## เขียน Tests ที่ดี
@@ -73,7 +73,7 @@ async function testLogin() {
 ### ทดสอบสิ่งเดียวในแต่ละ Test
 
 ```javascript
-// ไม่ดี - ทดสอบหลายอย่าง
+// Bad - Tests multiple things
 function testUser() {
     const user = createUser('Alice', 'alice@example.com');
     console.assert(user.name === 'Alice');
@@ -81,7 +81,7 @@ function testUser() {
     console.assert(user.isActive === true);
 }
 
-// ดี - หนึ่ง assertion ต่อหนึ่ง test
+// Good - One assertion per test
 function testUserName() {
     const user = createUser('Alice', 'alice@example.com');
     console.assert(user.name === 'Alice');
@@ -91,10 +91,10 @@ function testUserName() {
 ### ใช้ชื่อที่อธิบายได้ชัดเจน
 
 ```javascript
-// ไม่ดี
+// Bad
 function test1() { ... }
 
-// ดี
+// Good
 function testRegistrationWithValidEmail() { ... }
 function testRegistrationWithInvalidEmailThrows() { ... }
 ```
@@ -102,13 +102,13 @@ function testRegistrationWithInvalidEmailThrows() { ... }
 ### Arrange-Act-Assert
 
 ```javascript
-// Arrange - เตรียมข้อมูล test
+// Arrange - Set up test data
 const user = createUser('Alice');
 
-// Act - ทำการกระทำ
+// Act - Perform the action
 const result = user.authenticate('correctpassword');
 
-// Assert - ตรวจสอบผลลัพธ์
+// Assert - Check the outcome
 console.assert(result === true);
 ```
 
@@ -117,10 +117,10 @@ console.assert(result === true);
 Coverage วัดว่ามีโค้ดถูกทดสอบเท่าไร
 
 ```
-# รัน tests และตรวจสอบ coverage
+# Run tests and check coverage
 npm test -- --coverage
 
-# รายงาน coverage
+# Coverage report
 Statements   : 85%
 Branches     : 78%
 Functions    : 90%

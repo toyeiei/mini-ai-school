@@ -36,8 +36,8 @@ print(f"Predicted price for {new_size} sq ft: ${predicted_price[0]:.2f}k")
 Y = b0 + b1*X + error
    |    |      |
    |    |      X (input variable)
-   |    Slope (Y เปลี่ยนแปลงเท่าไหร่ต่อ 1 หน่วย X)
-   Intercept (ค่า Y เมื่อ X = 0)
+   |    Slope (how much Y changes per unit X)
+   Intercept (Y when X = 0)
 ```
 
 ## การหาเส้นตรงที่ดีที่สุด

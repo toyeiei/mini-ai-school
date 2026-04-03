@@ -7,12 +7,12 @@
 ### ใช้ชื่อที่มีความหมาย
 
 ```javascript
-// ไม่ดี
+// Bad
 const d = new Date();
 const x = users.filter(u => u.a > 18);
 const tmp = calculate();
 
-// ดี
+// Good
 const currentDate = new Date();
 const adultUsers = users.filter(user => user.age > 18);
 const temporaryValue = calculate();
@@ -23,7 +23,7 @@ const temporaryValue = calculate();
 แต่ละฟังก์ชันควรทำสิ่งเดียวให้ดี
 
 ```javascript
-// ไม่ดี - ฟังก์ชันทำหลายอย่าง
+// Bad - Function does multiple things
 function processUser(user) {
     validateUser(user);
     saveToDatabase(user);
@@ -31,7 +31,7 @@ function processUser(user) {
     logActivity(user);
 }
 
-// ดี - แยกความรับผิดชอบ
+// Good - Separate concerns
 function processUser(user) {
     if (!validateUser(user)) throw new Error('Invalid');
     saveToDatabase(user);
@@ -49,10 +49,10 @@ function notifyUser(user) {
 ### หลีกเลี่ยง Magic Numbers
 
 ```javascript
-// ไม่ดี
+// Bad
 if (users.length > 86400000) { ... }
 
-// ดี
+// Good
 const MILLISECONDS_PER_DAY = 86400000;
 if (users.length > MILLISECONDS_PER_DAY) { ... }
 ```
@@ -62,7 +62,7 @@ if (users.length > MILLISECONDS_PER_DAY) { ... }
 ### DRY - Don't Repeat Yourself
 
 ```javascript
-// ไม่ดี - โค้ดซ้ำ
+// Bad - Repeated logic
 function getFullName(user) {
     return user.firstName + ' ' + user.lastName;
 }
@@ -71,7 +71,7 @@ function getGreeting(user) {
     return 'Hello, ' + user.firstName + ' ' + user.lastName + '!';
 }
 
-// ดี
+// Good
 function getFullName(user) {
     return `${user.firstName} ${user.lastName}`;
 }
@@ -86,18 +86,18 @@ function getGreeting(user) {
 อย่าเพิ่มฟังก์ชันนาลจนกว่าจะต้องใช้
 
 ```javascript
-// ไม่ดี - Over-engineering
+// Bad - Over-engineering
 class User {
     constructor(name) {
         this.name = name;
     }
-    // เพิ่มไว้ "เผื่อไว้ก่อน"
+    // Added "just in case"
     updatePhone(phone) { ... }
     updateAddress(address) { ... }
     changeEmail(email) { ... }
 }
 
-// ดี - เฉพาะที่ต้องใช้ตอนนี้
+// Good - Only what you need now
 class User {
     constructor(name) {
         this.name = name;
@@ -110,25 +110,25 @@ class User {
 ### การจัดรูปแบบที่สม่ำเสมอ
 
 ```javascript
-// เลือกรูปแบบหนึ่งแล้วใช้ให้สม่ำเสมอ
+// Pick a style and stick with it
 const user = {
     name: 'Alice',           // 2 spaces, trailing comma
     email: 'alice@example.com'
 };
 
-// อย่าผสม
+// Not mixed
 const user = {name: 'Alice', email: 'alice@example.com'}
 ```
 
 ### คอมเมนต์ที่มีคุณค่า
 
 ```javascript
-// ไม่ดี - บอกสิ่งที่ชัดเจน
-// เพิ่ม counter
+// Bad - States the obvious
+// Increment counter
 counter++;
 
-// ดี - อธิบายว่าทำไม
-// ชดเชย off-by-one จาก index ที่เริ่มจากศูนย์
+// Good - Explains why
+// Compensate for off-by-one from zero-based index
 counter++;
 ```
 
@@ -137,28 +137,28 @@ counter++;
 ### หลีกเลี่ยงการทำงานที่ไม่จำเป็น
 
 ```javascript
-// ไม่ดี - คำนวณใหม่ทุกรอบ
+// Bad - Recalculating on every iteration
 for (let i = 0; i < users.length; i++) {
     if (users[i].age > 18) {
-        adults.push(users[i]); // length คำนวณใหม่ทุกครั้ง
+        adults.push(users[i]); // length computed each time
     }
 }
 
-// ดี
+// Good
 const adultUsers = users.filter(user => user.age > 18);
 ```
 
 ### ระวัง Side Effects
 
 ```javascript
-// ไม่ดี - แก้ไข state ภายนอก
+// Bad - Modifies external state
 function calculateTotal(items) {
     total = 0;  // Global!
     for (const item of items) total += item.price;
     return total;
 }
 
-// ดี - Pure function
+// Good - Pure function
 function calculateTotal(items) {
     return items.reduce((sum, item) => sum + item.price, 0);
 }

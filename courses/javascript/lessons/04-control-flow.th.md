@@ -62,17 +62,17 @@ if (score >= 90) {
 ผสมเงื่อนไข:
 
 ```javascript
-// AND - ทั้งสองเงื่อนไขต้องเป็นจริง
+// AND - both must be true
 if (age >= 18 && hasLicense) {
     console.log('Can drive');
 }
 
-// OR - อย่างน้อยหนึ่งเงื่อนไขต้องเป็นจริง
+// OR - at least one must be true
 if (isMember || hasTicket) {
     console.log('Access granted');
 }
 
-// NOT - สลับเงื่อนไข
+// NOT - inverts the condition
 if (!isBanned) {
     console.log('Welcome!');
 }

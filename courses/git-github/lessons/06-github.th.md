@@ -16,40 +16,40 @@ GitHub เป็นแพลตฟอร์มสำหรับเก็บ Git
 ## เชื่อมต่อเครื่องกับ GitHub
 
 ```
-# เพิ่ม remote (ตั้งค่าครั้งเดียว)
+# Add remote (one-time setup)
 git remote add origin https://github.com/you/my-project.git
 
-# Push โค้ดของคุณ
+# Push your code
 git push -u origin main
 ```
 
 ## Push และ Pull
 
 ```
-# อัปโหลด commits ไป GitHub
+# Upload commits to GitHub
 git push
 
-# ดาวน์โหลด commits จาก GitHub
+# Download commits from GitHub
 git pull
 ```
 
 ## Clone Repository
 
 ```
-# ได้โปรเจกต์ของคนอื่นมา
+# Get someone else's project
 git clone https://github.com/user/repo.git
 ```
 
 ## Sync Fork (สำหรับการทำงานร่วมกัน)
 
 ```
-# เพิ่ม upstream remote
+# Add upstream remote
 git remote add upstream https://github.com/original/repo.git
 
-# ดึงการเปลี่ยนแปลงล่าสุด
+# Fetch latest changes
 git fetch upstream
 
-# Merge เข้า branch ของคุณ
+# Merge into your branch
 git merge upstream/main
 ```
 

@@ -15,10 +15,10 @@ main
 ## แสดงรายการ Branches
 
 ```
-# ดู branches ทั้งหมด
+# See all branches
 git branch
 
-# Branch ปัจจุบันจะมีเครื่องหมายดอกจัน
+# Current branch has an asterisk
 * main
 ```
 
@@ -34,7 +34,7 @@ git branch feature-login
 
 ```bash
 git checkout feature-login
-# หรือ (syntax ที่ทันสมัยกว่า)
+# OR (modern syntax)
 git switch feature-login
 ```
 
@@ -42,17 +42,17 @@ git switch feature-login
 
 ```bash
 git checkout -b feature-login
-# หรือ
+# OR
 git switch -c feature-login
 ```
 
 ## ทำงานบน Branch ของคุณ
 
 ```
-# สลับไป branch ใหม่
+# Switch to new branch
 git switch -c feature-login
 
-# ทำการเปลี่ยนแปลง
+# Make changes
 echo "login page" > login.html
 git add .
 git commit -m "Add login page"
@@ -63,10 +63,10 @@ git commit -m "Add login page"
 ## ลบ Branch
 
 ```
-# ลบเมื่อ merge แล้ว
+# Delete when merged
 git branch -d feature-login
 
-# บังคับลบ (แม้ยังไม่ได้ merge)
+# Force delete (even if not merged)
 git branch -D feature-login
 ```
 

@@ -566,8 +566,8 @@ body {
 
 #lesson-content code {
     font-family: 'JetBrains Mono', monospace;
-    background: #2d2d2d;
-    color: #f8f8f2;
+    background: #f0f0f0;
+    color: #333;
     padding: 0.15rem 0.4rem;
     border-radius: 3px;
     font-size: 0.9em;

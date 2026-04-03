@@ -28,16 +28,16 @@ fruits.length;  // 3
 ```javascript
 let nums = [1, 2, 3];
 
-// เพิ่มที่ท้าย
+// Add to end
 nums.push(4);      // [1, 2, 3, 4]
 
-// ลบที่ท้าย
+// Remove from end
 nums.pop();        // [1, 2, 3]
 
-// เพิ่มที่ต้น
+// Add to beginning
 nums.unshift(0);   // [0, 1, 2, 3]
 
-// ลบที่ต้น
+// Remove from beginning
 nums.shift();      // [1, 2, 3]
 ```
 
@@ -64,16 +64,16 @@ colors.forEach((color, index) => {
 ```javascript
 let nums = [3, 1, 4, 1, 5];
 
-// map - แปลงแต่ละ element
+// map - transform each element
 nums.map(n => n * 2);  // [6, 2, 8, 2, 10]
 
-// filter - เก็บ element ที่ผ่านเงื่อนไข
+// filter - keep elements that pass a test
 nums.filter(n => n > 2);  // [3, 4, 5]
 
-// find - หา element ที่ตรงกันเป็นตัวแรก
+// find - get first matching element
 nums.find(n => n > 3);  // 4
 
-// reduce - รวมเป็นค่าเดียว
+// reduce - combine into single value
 nums.reduce((sum, n) => sum + n, 0);  // 14
 ```
 
@@ -82,10 +82,10 @@ nums.reduce((sum, n) => sum + n, 0);  // 14
 ```javascript
 let items = ['a', 'b', 'c', 'd'];
 
-// indexOf - ตำแหน่งของ element
+// indexOf - position of element
 items.indexOf('c');  // 2
 
-// includes - มีอยู่หรือไม่?
+// includes - does it exist?
 items.includes('b');  // true
 ```
 

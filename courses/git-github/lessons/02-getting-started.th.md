@@ -23,11 +23,11 @@ git config --global user.email "you@example.com"
 ## สร้าง Repository
 
 ```
-# สร้างโฟลเดอร์ใหม่
+# Create a new folder
 mkdir my-project
 cd my-project
 
-# เริ่มต้น Git
+# Initialize Git
 git init
 ```
 
@@ -47,7 +47,7 @@ git status
 ## ขั้นตอนการทำงานพื้นฐาน
 
 ```
-แก้ไขไฟล์ → Stage → Commit
+Edit files → Stage → Commit
 ```
 
 1. **แก้ไข**: ทำการเปลี่ยนแปลงไฟล์ของคุณ

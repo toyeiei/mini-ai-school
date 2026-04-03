@@ -5,20 +5,20 @@ Links เชื่อมต่อหน้าเว็บ Images เพิ่ม
 ## Links (Anchor Tags)
 
 ```html
-<!-- Link ไปหน้าอื่น -->
-<a href="about.html">เกี่ยวกับเรา</a>
+<!-- Link to another page -->
+<a href="about.html">About Us</a>
 
-<!-- Link ไปเว็บภายนอก -->
+<!-- Link to external site -->
 <a href="https://google.com">Google</a>
 
-<!-- เปิด Tab ใหม่ -->
+<!-- Open in new tab -->
 <a href="https://google.com" target="_blank">Google</a>
 ```
 
 ## Images
 
 ```html
-<img src="photo.jpg" alt="คำอธิบายรูป">
+<img src="photo.jpg" alt="Description of photo">
 ```
 
 Attributes:
@@ -45,8 +45,8 @@ my-site/
 ```
 
 ```html
-<a href="about.html">เกี่ยวกับ</a>
-<img src="images/photo.jpg" alt="รูป">
+<a href="about.html">About</a>
+<img src="images/photo.jpg" alt="Photo">
 ```
 
 ## Alt Text
@@ -54,11 +54,11 @@ my-site/
 เขียน alt text ที่อธิบายชัดเจน:
 
 ```html
-<!-- ดี -->
-<img src="cat.jpg" alt="แมวส้มนอนบนโซฟา">
+<!-- Good -->
+<img src="cat.jpg" alt="Orange cat sleeping on a couch">
 
-<!-- ไม่ดี -->
-<img src="cat.jpg" alt="แมว">
+<!-- Bad -->
+<img src="cat.jpg" alt="cat">
 ```
 
 ## สรุป

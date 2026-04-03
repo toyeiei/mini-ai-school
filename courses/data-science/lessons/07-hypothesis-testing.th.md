@@ -84,7 +84,7 @@ p-value = 0.03
     0.01             0.05
     |                  |
     Reject H0        Fail to reject H0
-    (หลักฐานแข็งแกร่ง) (หลักฐานไม่เพียงพอ)
+    (strong evidence) (not enough evidence)
 ```
 
 ## ขั้นตอนการทดสอบ

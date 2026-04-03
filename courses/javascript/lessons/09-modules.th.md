@@ -41,7 +41,7 @@ import { add, PI } from './math.js';
 // Import default export
 import multiply from './math.js';
 
-// Import ทั้งหมด
+// Import everything
 import * as math from './math.js';
 
 console.log(math.add(1, 2));
@@ -71,13 +71,13 @@ const { add } = require('./math.js');
 ## Module Patterns
 
 ```javascript
-// Re-export จากไฟล์อื่น
+// Re-export from another file
 export { add } from './math.js';
 
-// เปลี่ยนชื่อ exports
+// Rename exports
 export { add as sum };
 
-// เปลี่ยนชื่อ imports
+// Rename imports
 import { add as sum } from './math.js';
 ```
 

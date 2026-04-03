@@ -15,18 +15,18 @@ https://api.example.com/users/123?sort=name&order=asc
 
 ```
 # Collection endpoints
-GET    /users          # แสดงรายการผู้ใช้ทั้งหมด
-POST   /users          # สร้างผู้ใช้ใหม่
+GET    /users          # List all users
+POST   /users          # Create user
 
 # Single resource endpoints
-GET    /users/123      # ดูผู้ใช้ 123
-PUT    /users/123      # แทนที่ผู้ใช้ 123
-PATCH  /users/123      # อัปเดตผู้ใช้ 123
-DELETE /users/123      # ลบผู้ใช้ 123
+GET    /users/123      # Get user 123
+PUT    /users/123      # Replace user 123
+PATCH  /users/123      # Update user 123
+DELETE /users/123      # Delete user 123
 
 # Nested resources
-GET    /users/123/posts    # โพสต์ของผู้ใช้ 123
-GET    /posts/456/comments # ความคิดเห็นของโพสต์ 456
+GET    /users/123/posts    # Posts by user 123
+GET    /posts/456/comments # Comments on post 456
 ```
 
 ## Query Parameters
@@ -34,16 +34,16 @@ GET    /posts/456/comments # ความคิดเห็นของโพส
 กรอง, เรียงลำดับ, และแบ่งหน้า:
 
 ```
-# กรอง
+# Filter
 GET /users?country=thailand
 
-# เรียงลำดับ
+# Sort
 GET /users?sort=name&order=asc
 
-# แบ่งหน้า
+# Paginate
 GET /users?page=2&limit=10
 
-# รวมกัน
+# Combined
 GET /users?country=thailand&sort=name&page=1
 ```
 

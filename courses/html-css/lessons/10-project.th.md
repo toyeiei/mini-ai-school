@@ -8,28 +8,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>โปรไฟล์ของฉัน</title>
+    <title>My Profile</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>โปรไฟล์ของฉัน</h1>
+        <h1>My Profile</h1>
     </header>
 
     <main>
         <section class="profile">
-            <img src="avatar.jpg" alt="รูปของฉัน" class="avatar">
-            <h2>จอห์น ดอห์น</h2>
-            <p>นักพัฒนาเว็บ</p>
+            <img src="avatar.jpg" alt="My photo" class="avatar">
+            <h2>John Doe</h2>
+            <p>Web Developer</p>
         </section>
 
         <section class="about">
-            <h3>เกี่ยวกับฉัน</h3>
-            <p>ฉันรักการสร้างเว็บไซต์และเรียนรู้เทคโนโลยีใหม่ๆ</p>
+            <h3>About Me</h3>
+            <p>I love building websites and learning new technologies.</p>
         </section>
 
         <section class="skills">
-            <h3>ทักษะ</h3>
+            <h3>Skills</h3>
             <ul>
                 <li>HTML</li>
                 <li>CSS</li>
@@ -38,8 +38,8 @@
         </section>
 
         <section class="contact">
-            <h3>ติดต่อ</h3>
-            <p>อีเมล: john@example.com</p>
+            <h3>Contact</h3>
+            <p>Email: john@example.com</p>
         </section>
     </main>
 </body>

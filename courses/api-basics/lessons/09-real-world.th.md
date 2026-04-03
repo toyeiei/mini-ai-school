@@ -16,7 +16,7 @@
 ## ลองใช้ JSONPlaceholder
 
 ```javascript
-// ดึงโพสต์ทั้งหมด
+// Get all posts
 async function getPosts() {
     const response = await fetch(
         'https://jsonplaceholder.typicode.com/posts'
@@ -25,7 +25,7 @@ async function getPosts() {
     console.log(posts);
 }
 
-// ดึงโพสต์พร้อมความคิดเห็น
+// Get post with comments
 async function getPostWithComments(postId) {
     const [post, comments] = await Promise.all([
         fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`),
@@ -70,10 +70,10 @@ async function getWeather(city) {
 APIs จำกัดจำนวนคำขอที่คุณสามารถทำได้:
 
 ```javascript
-// ตรวจสอบ rate limit headers
+// Check rate limit headers
 console.log(response.headers.get('X-RateLimit-Remaining'));
 
-// จัดการ rate limit
+// Handle rate limit
 if (response.status === 429) {
     console.log('Slow down! Too many requests.');
 }

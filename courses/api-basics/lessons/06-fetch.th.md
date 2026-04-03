@@ -66,17 +66,17 @@ async function createUser() {
 ## รูปแบบที่พบบ่อย
 
 ```javascript
-// ตั้งค่า authorization header
+// Set authorization header
 headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer YOUR_TOKEN'
 }
 
-// จัดการ status codes ที่แตกต่างกัน
+// Handle different status codes
 if (response.status === 404) {
-    // จัดการไม่พบ
+    // Handle not found
 } else if (response.status === 401) {
-    // จัดการไม่ได้รับอนุญาต
+    // Handle unauthorized
 }
 ```
 

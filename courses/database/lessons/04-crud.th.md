@@ -107,7 +107,7 @@ DELETE FROM users WHERE id = 3;
 ### ความปลอดภัยก่อนอื่นเสมอ: ใช้ WHERE เสมอ
 
 ```
--- อันตราย! ลบผู้ใช้ที่อายุเกิน 100 (น่าจะเป็นทุกคน)
+-- Dangerous! Deletes all users over 100 (probably all of them)
 DELETE FROM users WHERE age > 100;
 ```
 
@@ -116,7 +116,7 @@ DELETE FROM users WHERE age > 100;
 ตัวอย่างเต็ม:
 
 ```
--- สร้างตาราง
+-- Create table
 CREATE TABLE products (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
@@ -124,20 +124,20 @@ CREATE TABLE products (
     stock INTEGER DEFAULT 0
 );
 
--- เพิ่มสินค้า
+-- Add products
 INSERT INTO products (name, price, stock)
 VALUES
     ('Laptop', 999.99, 10),
     ('Mouse', 29.99, 50),
     ('Keyboard', 79.99, 25);
 
--- อัปเดตจำนวนในสต็อก
+-- Update stock
 UPDATE products SET stock = 8 WHERE name = 'Laptop';
 
--- ตรวจสอบผลลัพธ์
+-- Check results
 SELECT * FROM products;
 
--- ลบสินค้าที่หมดสต็อก
+-- Delete out-of-stock items
 DELETE FROM products WHERE stock = 0;
 ```
 

@@ -6,14 +6,14 @@
 
 ```css
 ┌─────────────────────────────┐
-│          MARGIN              │  <- ช่องว่างด้านนอก
+│          MARGIN              │  <- Space outside
 ├─────────────────────────────┤
 │          BORDER             │
 ├─────────────────────────────┤
-│         PADDING             │  <- ช่องว่างด้านใน
+│         PADDING             │  <- Space inside
 ├─────────────────────────────┤
 │                             │
-│          CONTENT            │  <- ข้อความ, รูป
+│          CONTENT            │  <- Text, images
 │                             │
 └─────────────────────────────┘
 ```
@@ -22,17 +22,17 @@
 
 ```css
 .box {
-    /* ขนาดเนื้อหา */
+    /* Content size */
     width: 200px;
     height: 100px;
 
-    /* ช่องว่างด้านใน */
+    /* Inside spacing */
     padding: 20px;
 
-    /* เส้นขอบ */
+    /* Border */
     border: 1px solid black;
 
-    /* ช่องว่างด้านนอก */
+    /* Outside spacing */
     margin: 10px;
 }
 ```
@@ -40,13 +40,13 @@
 ## Shorthand
 
 ```css
-/* ทุกด้าน */
+/* All sides */
 padding: 20px;
 
-/* บน/ล่าง ซ้าย/ขวา */
+/* Top/bottom left/right */
 padding: 10px 20px;
 
-/* บน ขวา ล่าง ซ้าย */
+/* Top right bottom left */
 padding: 10px 20px 10px 20px;
 ```
 
@@ -63,9 +63,9 @@ padding: 10px 20px 10px 20px;
 ## Display Property
 
 ```css
-.block { display: block; }    /* กว้างเต็ม */
-.inline { display: inline; }  /* อยู่บรรทัดเดียวกัน */
-.inline-block { display: inline-block; } /* ผสม */
+.block { display: block; }    /* Full width */
+.inline { display: inline; }  /* Same line */
+.inline-block { display: inline-block; } /* Hybrid */
 ```
 
 ## สรุป

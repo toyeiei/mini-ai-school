@@ -6,9 +6,9 @@ Lists จัดระเบียบข้อมูล Tables แสดงข้
 
 ```html
 <ul>
-    <li>แอปเปิ้ล</li>
-    <li>กล้วย</li>
-    <li>ส้ม</li>
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Oranges</li>
 </ul>
 ```
 
@@ -16,9 +16,9 @@ Lists จัดระเบียบข้อมูล Tables แสดงข้
 
 ```html
 <ol>
-    <li>ผสมแป้งกับไข่</li>
-    <li>เติมน้ำตาล</li>
-    <li>อบ 30 นาที</li>
+    <li>Mix flour and eggs</li>
+    <li>Add sugar</li>
+    <li>Bake for 30 minutes</li>
 </ol>
 ```
 
@@ -28,17 +28,17 @@ Lists จัดระเบียบข้อมูล Tables แสดงข้
 <table>
     <thead>
         <tr>
-            <th>ชื่อ</th>
-            <th>อายุ</th>
+            <th>Name</th>
+            <th>Age</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>อลิซ</td>
+            <td>Alice</td>
             <td>25</td>
         </tr>
         <tr>
-            <td>บ็อบ</td>
+            <td>Bob</td>
             <td>30</td>
         </tr>
     </tbody>
