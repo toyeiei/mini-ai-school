@@ -20,12 +20,12 @@ Prompt ที่คลุมเครือได้คุณ:
 
 **Prompt ไม่ดี:**
 ```
-เขียนเรื่องเกี่ยวกับสุนัข
+Write about dogs.
 ```
 
 **Prompt ดี:**
 ```
-เขียนบทนำ 200 คำเกี่ยวกับโกลเด้นริทรีฟเวอร์สำหรับเจ้าของสุนัขมือใหม่ รวม: อารมณ์ ความต้องการออกกำลัง และการดูแลขน โทน: เป็นมิตรและให้กำลังใจ
+Write a 200-word introduction about golden retrievers for a first-time dog owner. Include: temperament, exercise needs, and grooming requirements. Tone: friendly and encouraging.
 ```
 
 เห็นความแตกต่างไหม? อันที่สองบอก AI ว่า อะไร เท่าไหร่ และอย่างไร

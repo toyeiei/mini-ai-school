@@ -10,17 +10,17 @@
 
 **การตลาด:**
 ```
-ทำหน้าที่เป็นนักเขียนคัดลอกการตลาดที่เป็นมิตร เขียนคำบรรยาย Instagram สำหรับร้านกาแฟเล็กๆ
+Act as a friendly marketing copywriter. Write Instagram captions for a small coffee shop.
 ```
 
 **เทคนิค:**
 ```
-คุณเป็นติวเตอร์การเขียนโปรแกรมที่ใจเย็นอธิบายแนวคิดสำหรับมือใหม่ อธิบายว่า variable คืออะไร
+You are a patient programming tutor explaining concepts to beginners. Explain what a variable is.
 ```
 
 **สร้างสรรค์:**
 ```
-คุณเป็นกวีไฮกุ เขียนไฮกุ 5 บทเกี่ยวกับฝน
+You are a haiku poet. Write 5 haikus about rain.
 ```
 
 ## ทำไมถึงได้ผล
@@ -34,12 +34,12 @@
 
 **ไม่มีบทบาท:**
 ```
-เขียนสรุปบทความนี้
+Write a summary of this article.
 ```
 
 **มีบทบาท:**
 ```
-คุณเป็นผู้ช่วยฝ่ายบริหารที่ยุ่ง สรุปบทความนี้ให้ฉันอ่านใน 30 วินาที เน้นเฉพาะสิ่งที่นำไปปฏิบัติได้จริง
+You are a busy executive assistant. Write a summary of this article that I can read in 30 seconds. Highlight only the actionable takeaways.
 ```
 
 บทบาทบอก AI ให้โฟกัสสิ่งที่เป็นประโยชน์สำหรับคนยุ่ง

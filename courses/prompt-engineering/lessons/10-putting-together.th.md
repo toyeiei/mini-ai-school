@@ -5,44 +5,44 @@
 ## แม่แบบ Prompt สมบูรณ์
 
 ```
-[บทบาท/บุคลิก]
-คุณเป็น [บทบาท] ที่มี [ความเชี่ยวชาญ]
+[Role/Persona]
+You are [role] with [expertise].
 
-[งาน]
-[สิ่งที่คุณต้องการ ให้ชัดเจนและเฉพาะเจาะจง]
+[Task]
+[What you want done, specific and clear]
 
-[บริบท]
-[ข้อมูลพื้นหลัง ข้อจำกัด สถานการณ์]
+[Context]
+[Background info, constraints, situation]
 
-[รูปแบบ]
-[วิธีที่คุณต้องการให้จัดโครงสร้าง]
+[Format]
+[How you want the output structured]
 
-[กลุ่มเป้าหมาย]
-[ใครจะอ่านสิ่งนี้]
+[Audience]
+[Who will read this]
 
-[โทน]
-[ควรรู้สึกอย่างไร - มืออาชีพ เป็นกันเอง ฯลฯ]
+[Tone]
+[How it should feel - professional, casual, etc.]
 
-[ข้อจำกัด]
-[อะไรควรรวมหรือไม่รวม]
+[Constraints]
+[What to include or exclude]
 ```
 
 ## ตัวอย่าง: Prompt สมบูรณ์
 
 ```
-คุณเป็นผู้เชี่ยวชาญด้านการตลาดที่มีประสบการณ์ 10 ปีสำหรับธุรกิจขนาดเล็ก
+You are a marketing specialist with 10 years of experience for small businesses.
 
-เขียนโพสต์โซเชียลมีเดียประกาศเปิดร้านกาแฟใหม่สัปดาห์หน้า
+Write a social media post announcing our new coffee shop opening next week.
 
-บริบท: เราเป็นร้านครอบครัวในย่านที่มีชุมชนศิลปะ เราเน้นกาแฟพิเศษและขนมอบ homemade เปิดวันอังคาร 7 โมงเช้า
+Context: We're a family-owned shop in a neighborhood known for its artistic community. Our focus is on specialty coffee and homemade pastries. The opening is Tuesday at 7am.
 
-รูปแบบ: โพสต์เดียวมีบรรทัดดึงดูด 3-4 ประโยค และชักชวนให้มาก
+Format: One post with a hook line, 3-4 sentences, and a call to action.
 
-กลุ่มเป้าหมาย: คนท้องถิ่นอายุ 25-45 ที่ชอบกาแฟคุณภาพและสนับสนุนธุรกิจท้องถิ่น
+Audience: Local residents aged 25-45 who appreciate quality coffee and support local businesses.
 
-โทน: อบอุ่น ให้การต้อนรับ ตื่นเต้นแต่ไม่ใช่ขายของ
+Tone: Warm, welcoming, excited but not salesy.
 
-รวม: ที่อยู่และเวลาเปิด
+Include: The address and opening time.
 ```
 
 ## ฝึก: สร้าง Prompt ของคุณเอง

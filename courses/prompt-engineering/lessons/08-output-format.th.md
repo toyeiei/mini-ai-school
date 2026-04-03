@@ -13,22 +13,22 @@
 
 **จุด bullet:**
 ```
-แสดง 5 ประโยชน์หลักของการทำสมาธิ ใช้จุด bullet
+List the top 5 benefits of meditation. Use bullet points.
 ```
 
 **รายการตัวเลข:**
 ```
-จัดอันดับหนังสือ 10 เล่มนี้ตามความสำคัญสำหรับมือใหม่ ใช้รายการตัวเลข 1-10
+Rank these 10 books by importance for beginners. Use numbered list 1-10.
 ```
 
 **ตาราง:**
 ```
-เปรียบเทียบแล็ปท็อป 3 เครื่องนี้เป็นตารางมีคอลัมน์: ราคา อายุแบตเตอรี่ น้ำหนัก
+Compare these 3 laptops in a table with columns: Price, Battery Life, Weight.
 ```
 
 **JSON/โค้ด:**
 ```
-ส่งคืนข้อมูลนี้เป็น JSON ที่ถูกต้องมีฟิลด์: name, age, occupation
+Return this data as valid JSON with fields: name, age, occupation.
 ```
 
 ## ตัวอย่าง: คำขอเดียวกัน รูปแบบต่างกัน
@@ -37,18 +37,18 @@
 
 **รูปแบบ bullet:**
 ```
-- คำนิยาม: กระบวนการที่พืชเปลี่ยนแสงแดดเป็นพลังงาน
-- ส่วนประกอบหลัก: CO2, น้ำ, แสงแดด
-- ผลลัพธ์: กลูโคสและออกซิเจน
+- Definition: Process where plants convert sunlight to energy
+- Key ingredients: CO2, water, sunlight
+- Output: Glucose and oxygen
 ```
 
 **รูปแบบทีละขั้นตอน:**
 ```
-1. พืชดูดซับน้ำผ่านราก
-2. ใบจับแสงแดด
-3. CO2 เข้าผ่านปากใบ
-4. การสังเคราะห์แสงเกิดขึ้นในคลอโรพลาสต์
-5. กลูโคสถูกสร้างและเก็บสะสม
+1. Plants absorb water through roots
+2. Leaves capture sunlight
+3. CO2 enters through stomata
+4. Photosynthesis occurs in chloroplasts
+5. Glucose is produced and stored
 ```
 
 ## เคล็ดลับรูปแบบ
@@ -60,5 +60,5 @@
 ## วลีมหัศจรรย์
 
 ```
-จัดรูปแบบคำตอบเป็น: [รูปแบบของคุณที่นี่]
+Format the response as: [your format here]
 ```

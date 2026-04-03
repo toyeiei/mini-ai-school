@@ -5,7 +5,7 @@
 ## วงจรการปรับปรุง
 
 ```
-ถาม → ดู → ปรับ → ดู → ปรับ → เสร็จ
+Ask → Review → Refine → Review → Refine → Done
 ```
 
 นึกภาพเหมือนแก้ไขเอกสาร ฉบับร่างแรก → แก้ไข → ฉบับสุดท้าย
@@ -14,31 +14,31 @@
 
 **เพิ่มเติม:**
 ```
-เริ่มดีแล้ว! ตอนนี้เพิ่มส่วนเกี่ยวกับราคาด้วย
+Good start! Now add a section about pricing.
 ```
 
 **ทำให้ง่ายขึ้น:**
 ```
-นี่เทคนิคเกินไป ทำให้ง่ายขึ้นสำหรับคนไม่มีพื้นฐานด้านการเงิน
+This is too technical. Simplify it for someone with no background in finance.
 ```
 
 **เปลี่ยนโทน:**
 ```
-ดีมาก! ตอนนี้เขียนใหม่ด้วยโทนสนุกและขำขันกว่านี้
+Great! Now rewrite it with a more playful, humorous tone.
 ```
 
 **เฉพาะเจาะจงขึ้น:**
 ```
-ตัวอย่างเป็นประโยชน์ ช่วยเพิ่มตัวเลขและสถิติที่เฉพาะเจาะจงกว่านี้ได้ไหม?
+The examples are helpful. Can you add more specific numbers and statistics?
 ```
 
 ## ขอทางเลือก
 
 ```
-ให้ฉัน 3 เวอร์ชันของหัวข้อนี้:
-1. เป็นทางการและมืออาชีพ
-2. สนุกและดึงดูดใจ
-3. เน้นประโยชน์ที่ได้รับ
+Give me 3 different versions of this headline:
+1. Serious and professional
+2. Playful and catchy
+3. Focused on the benefit
 ```
 
 จากนั้นเลือกส่วนที่ชอบจากแต่ละเวอร์ชัน
@@ -46,10 +46,10 @@
 ## แพทเทิร์น "ทำให้ดีขึ้น"
 
 ```
-นี่คือ [เนื้อหา] ทำให้ดีขึ้นโดย:
-- ทำประโยคสั้นลง
-- เพิ่มคำกริยาที่เป็นการกระทำ
-- ลบวลีที่ซ้ำซ้อน
+Here is [content]. Make it better by:
+- Making the sentences shorter
+- Adding more action verbs
+- Removing any repetitive phrases
 ```
 
 ## เมื่อไหร่ควรหยุด

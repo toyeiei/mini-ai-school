@@ -14,12 +14,12 @@
 
 **คลุมเครือ:**
 ```
-เขียนอีเมลถึงหัวหน้า
+Write an email to my boss.
 ```
 
 **เฉพาะเจาะจง:**
 ```
-เขียนอีเมลทางการถึงผู้จัดการอธิบายว่าโปรเจกต์จะล่าช้ากว่ากำหนด 3 วันเนื่องจากปัญหาทางเทคนิคที่ไม่คาดคิด เขียนไม่เกิน 150 คำ ขอโทษแต่มั่นใจว่าคุณภาพจะไม่ได้รับผลกระทบ
+Write a professional email to my manager explaining that the project will be delayed by 3 days due to unexpected technical issues. Keep it under 150 words. Be apologetic but confident that quality won't be compromised.
 ```
 
 เวอร์ชันเฉพาะเจาะจงให้ AI ทุกอย่างที่ต้องการ
@@ -36,14 +36,14 @@
 นำ prompt คลุมเครือนี้มาทำให้เฉพาะเจาะจง:
 
 ```
-เขียนเรื่องเกี่ยวกับภาวะโลกร้อน
+Write about climate change.
 ```
 
 **เวอร์ชันของคุณ:** ___________________________________
 
 **ตัวอย่างปรับปรุง:**
 ```
-เขียนภาพรวม 300 คำเกี่ยวกับภาวะโลกร้อนสำหรับนักเรียนมัธยม อธิบายวิทยาศาสตร์พื้นฐานอย่างง่าย รวมตัวอย่างว่ามันส่งผลต่อชีวิตประจำวันอย่างไร โทน: ให้ความรู้แต่ไม่ทำให้ตกใจ
+Write a 300-word overview of climate change for high school students. Explain the basic science simply. Include one example of how it affects daily life. Tone: informative but not alarming.
 ```
 
 ## เมื่อไม่แน่ใจ ให้อธิบายมากกว่า

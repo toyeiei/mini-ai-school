@@ -10,34 +10,34 @@
 
 **สถานการณ์ของคุณ:**
 ```
-ฉันเป็นนักออกแบบกราฟิกฟรีแลนซ์ที่ต้องการขึ้นราคาเป็นครั้งแรกในรอบ 3 ปี
+I'm a freelance graphic designer looking to raise my prices for the first time in 3 years.
 ```
 
 **ข้อจำกัดของคุณ:**
 ```
-งบประมาณ $500 เว็บไซต์ต้องรองรับมือถือ ต้องเสร็จใน 2 สัปดาห์
+The budget is $500. The website needs to be mobile-friendly. We need it done in 2 weeks.
 ```
 
 **กลุ่มเป้าหมายของคุณ:**
 ```
-ลูกค้าของเราส่วนใหญ่เป็นเจ้าของธุรกิจขนาดเล็กอายุ 40-60 ปีที่ไม่ถนัดเทคโนโลยี
+Our customers are mostly small business owners aged 40-60 who aren't tech-savvy.
 ```
 
 **งานก่อนหน้าของคุณ:**
 ```
-นี่คือคู่มือแบรนด์ของเรา... [แนบหรือวาง]
+Here's our brand guide... [attach or paste]
 ```
 
 ## ตัวอย่าง: ความแตกต่าง
 
 **ไม่มีบริบท:**
 ```
-เขียนอีเมลต้อนรับสำหรับลูกค้าใหม่
+Write a welcome email for new customers.
 ```
 
 **มีบริบท:**
 ```
-เขียนอีเมลต้อนรับสำหรับลูกค้าใหม่ของบริการสมัครสมาชิกผลิตภัณฑ์ทำความสะอาดที่เป็นมิตรต่อสิ่งแวดล้อม ลูกค้าของเราให้ความสำคัญกับความยั่งยืนและยินดีจ่ายแพงสำหรับผลิตภัณฑ์ที่สอดคล้องกับค่านิยมของพวกเขา โทนควรเป็นกันเอง ไม่ใช่องค์กร
+Write a welcome email for new customers of our eco-friendly cleaning product subscription. Our customers care about sustainability and are willing to pay premium for products that match their values. Tone should feel personal, not corporate.
 ```
 
 ## ให้บริบทเท่าไหร่?
