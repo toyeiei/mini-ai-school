@@ -122,7 +122,7 @@ function renderSidebar(sidebarEl, config) {
     homeLink.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
     sidebarEl.appendChild(homeLink);
 
-    // Language toggle
+    // Language toggle (buttons rendered here, event listeners bound in initLessonNavigation)
     const langToggle = document.createElement('div');
     langToggle.className = 'lang-toggle';
     const currentLang = getCurrentLang();
@@ -131,26 +131,8 @@ function renderSidebar(sidebarEl, config) {
         <span class="lang-sep">|</span>
         <button class="lang-btn ${currentLang === 'th' ? 'active' : ''}" data-lang="th">TH</button>
     `;
+    langToggle.id = 'lang-toggle';
     sidebarEl.appendChild(langToggle);
-
-    // Add lang toggle event listeners
-    langToggle.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const clickedBtn = e.target.closest('.lang-btn');
-            if (!clickedBtn) return;
-            const newLang = clickedBtn.dataset.lang;
-            setCurrentLang(newLang);
-            // Update active state
-            langToggle.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            clickedBtn.classList.add('active');
-            // Reload current lesson
-            const activeLink = document.querySelector('.lesson-list a.active');
-            if (activeLink) {
-                const lessonId = activeLink.getAttribute('data-lesson');
-                loadLessonById(lessonId, newLang);
-            }
-        });
-    });
 
     const header = document.createElement('header');
     header.className = 'sidebar-header';
@@ -455,6 +437,26 @@ function initLessonNavigation(config) {
             loadLessonById(lesson, getCurrentLang());
         });
     });
+
+    // Bind language toggle event listeners (must be here to access loadLessonById)
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const clickedBtn = e.target.closest('.lang-btn');
+                if (!clickedBtn) return;
+                const newLang = clickedBtn.dataset.lang;
+                setCurrentLang(newLang);
+                langToggle.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                clickedBtn.classList.add('active');
+                const activeLink = document.querySelector('.lesson-list a.active');
+                if (activeLink) {
+                    const lessonId = activeLink.getAttribute('data-lesson');
+                    loadLessonById(lessonId, newLang);
+                }
+            });
+        });
+    }
 
     // Initialize UI
     updateLessonCompletionUI();
