@@ -1,16 +1,18 @@
 function initApp() {
     function init() {
-        // Configure marked for Prism integration
+        // Configure marked for Prism integration (marked v15 API)
         if (typeof marked !== 'undefined' && typeof Prism !== 'undefined') {
             marked.use({
                 renderer: {
-                    code: function(code, language) {
-                        const lang = language || 'javascript';
+                    // marked v15 passes token objects, not individual parameters
+                    code: function(token) {
+                        const code = token.text || token;
+                        const lang = token.lang || 'javascript';
+                        let highlighted = code;
                         if (Prism.languages[lang]) {
-                            const highlighted = Prism.highlight(code, Prism.languages[lang], lang);
-                            return '<pre class="language-' + lang + '"><code class="language-' + lang + '">' + highlighted + '</code></pre>';
+                            highlighted = Prism.highlight(code, Prism.languages[lang], lang);
                         }
-                        return '<pre><code>' + code + '</code></pre>';
+                        return '<pre class="language-' + lang + '"><code class="language-' + lang + '">' + highlighted + '</code></pre>';
                     }
                 }
             });
