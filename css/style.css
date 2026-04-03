@@ -30,7 +30,7 @@ html, body {
 }
 
 body {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Noto Sans Thai', sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
@@ -564,6 +564,7 @@ body {
 }
 
 #lesson-content code {
+    font-family: 'JetBrains Mono', monospace;
     background: #2d2d2d;
     color: #f8f8f2;
     padding: 0.15rem 0.4rem;
@@ -573,6 +574,7 @@ body {
 
 #lesson-content pre[class*="language-"],
 #lesson-content pre[class*="language-"] code {
+    font-family: 'JetBrains Mono', monospace;
     background: #1a1a1a;
     color: #d4d4d4;
     padding: 0;
