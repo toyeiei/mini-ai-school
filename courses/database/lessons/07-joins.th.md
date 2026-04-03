@@ -6,7 +6,7 @@
 
 ลองนึกภาพการเก็บข้อมูลออเดอร์:
 
-```sql
+```
 -- ไม่ดี: ทั้งหมดในตารางเดียว ข้อมูลซ้ำซ้อนมาก
 orders table
 +--------+-------------+------------------+-------------+
@@ -59,7 +59,7 @@ INNER JOIN customers ON orders.customer_id = customers.id;
 ```
 
 ผลลัพธ์:
-```
+```sql
 +----+------------------+----------+
 | id | email            | product  |
 +----+------------------+----------+
@@ -80,7 +80,7 @@ LEFT JOIN orders ON customers.id = orders.customer_id;
 ```
 
 ผลลัพธ์:
-```
+```sql
 +------------------+----------+
 | email            | product  |
 +------------------+----------+
@@ -144,7 +144,7 @@ WHERE c.email = 'alice@email.com';
 
 เชื่อมตารางกับตัวเอง:
 
-```sql
+```
 -- หาผู้ใช้ที่อยู่เมืองเดียวกัน
 SELECT a.name, b.name, a.city
 FROM users a
@@ -158,7 +158,7 @@ WHERE a.id < b.id;
 
 ถ้าสองตารางมีคอลัมน์ชื่อเดียวกัน ให้ระบุตารางด้วย:
 
-```sql
+```
 -- ผิดพลาด: id กำกวม
 SELECT id, email FROM orders o INNER JOIN customers c ON o.customer_id = c.id;
 
@@ -170,7 +170,7 @@ SELECT o.id, c.email FROM orders o INNER JOIN customers c ON o.customer_id = c.i
 
 ถ้าไม่มี ON clause คุณจะได้ Cartesian product (ทุกแถวจับคู่กับทุกแถว):
 
-```sql
+```
 -- 3 ออเดอร์ x 2 ลูกค้า = 6 แถว (น่าจะไม่ใช่สิ่งที่คุณต้องการ!)
 SELECT * FROM orders, customers;
 ```

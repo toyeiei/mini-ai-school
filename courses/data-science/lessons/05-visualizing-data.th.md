@@ -109,7 +109,7 @@ plt.show()
 
 ### เริ่มจากศูนย์ (หรือไม่เริ่ม)
 
-```python
+```
 # Bad: Makes small differences look huge
 plt.bar(['A', 'B', 'C'], [99, 99.5, 100])
 plt.ylim(98, 101)
@@ -129,7 +129,7 @@ plt.ylim(98.5, 100.5)
 
 ## เพิ่มบริบท
 
-```python
+```
 # Include reference lines
 avg = sum(sales) / len(sales)
 plt.axhline(y=avg, color='red', linestyle='--', label='Average')

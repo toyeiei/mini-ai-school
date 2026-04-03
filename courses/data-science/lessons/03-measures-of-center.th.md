@@ -6,7 +6,7 @@
 
 บวกค่าทั้งหมดแล้วหารด้วยจำนวน
 
-```python
+```
 # Calculate mean
 sales = [120, 89, 156, 201, 178, 134, 167, 189, 145, 198]
 
@@ -16,13 +16,13 @@ print(f"Mean: {mean_sales}")  # Output: 157.7
 
 ### สูตร Mean
 
-```
+```python
 Mean = (ผลรวมของค่าทั้งหมด) / (จำนวนค่า)
 ```
 
 ### Mean ไวต่อ Outlier
 
-```python
+```
 # Normal salaries
 salaries = [45000, 52000, 48000, 51000, 49000]
 mean_salary = sum(salaries) / len(salaries)
@@ -40,7 +40,7 @@ Outlier ทำให้ค่า mean เบี่ยงไปมาก
 
 ค่าตรงกลางเมื่อเรียงข้อมูลจากน้อยไปมาก ถ้าจำนวนค่าเป็นคู่ ให้เฉลี่ยค่าตรงกลางสองค่า
 
-```python
+```
 # Odd number of values
 ages = [22, 25, 28, 31, 35]
 median_age = sorted(ages)[len(ages) // 2]
@@ -87,7 +87,7 @@ print(f"Mode: {mode}")  # blue
 
 ### Mode หลายค่า
 
-```python
+```
 # Two values appear equally
 numbers = [1, 2, 2, 3, 3, 4]  # Both 2 and 3 appear twice
 # This data has two modes: 2 and 3
@@ -103,7 +103,7 @@ numbers = [1, 2, 2, 3, 3, 4]  # Both 2 and 3 appear twice
 
 ## เปรียบเทียบ Mean vs Median
 
-```python
+```
 # Income distribution (typically skewed right)
 incomes = [30000, 35000, 40000, 45000, 50000, 60000, 75000, 200000]
 mean = sum(incomes) / len(incomes)  # ~71,875

@@ -15,7 +15,7 @@ GitHub เป็นแพลตฟอร์มสำหรับเก็บ Git
 
 ## เชื่อมต่อเครื่องกับ GitHub
 
-```bash
+```
 # เพิ่ม remote (ตั้งค่าครั้งเดียว)
 git remote add origin https://github.com/you/my-project.git
 
@@ -25,7 +25,7 @@ git push -u origin main
 
 ## Push และ Pull
 
-```bash
+```
 # อัปโหลด commits ไป GitHub
 git push
 
@@ -35,14 +35,14 @@ git pull
 
 ## Clone Repository
 
-```bash
+```
 # ได้โปรเจกต์ของคนอื่นมา
 git clone https://github.com/user/repo.git
 ```
 
 ## Sync Fork (สำหรับการทำงานร่วมกัน)
 
-```bash
+```
 # เพิ่ม upstream remote
 git remote add upstream https://github.com/original/repo.git
 

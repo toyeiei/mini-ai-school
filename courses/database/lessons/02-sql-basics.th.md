@@ -28,7 +28,7 @@ SELECT name, email FROM users;
 ```
 
 ผลลัพธ์:
-```
+```sql
 +------------------+---------+
 | email            | name    |
 +------------------+---------+
@@ -41,7 +41,7 @@ SELECT name, email FROM users;
 
 Comment ช่วยให้คุณอธิบาย query ของคุณ:
 
-```sql
+```
 -- Query นี้ดึงข้อมูลผู้ใช้ทั้งหมด
 SELECT * FROM users;
 
@@ -52,7 +52,7 @@ SELECT email FROM users; /* ดึงเฉพาะอีเมล */
 
 SQL keyword ไม่สนใจตัวพิมพ์ใหญ่-เล็ก แต่มักนิยมใช้ตัวพิมพ์ใหญ่:
 
-```sql
+```
 -- ทั้งหมดนี้ใช้ได้:
 SELECT * FROM users;
 select * from users;
@@ -79,7 +79,7 @@ SELECT name FROM users;
 
 ลอง query เหล่านี้:
 
-```sql
+```
 -- ดึงสินค้าทั้งหมด
 SELECT * FROM products;
 

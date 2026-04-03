@@ -91,7 +91,7 @@ import { add as sum } from './math.js';
 
 ## โครงสร้างตัวอย่าง
 
-```
+```javascript
 src/
 ├── utils/
 │   ├── format.js      // formatting utilities

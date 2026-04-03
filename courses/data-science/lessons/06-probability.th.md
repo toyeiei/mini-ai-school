@@ -31,7 +31,7 @@ die_space = [1, 2, 3, 4, 5, 6]
 ### Event
 หนึ่งหรือหลาย outcome
 
-```python
+```
 # Event: rolling an even number
 even_event = [2, 4, 6]
 ```
@@ -40,7 +40,7 @@ even_event = [2, 4, 6]
 
 Probability อยู่ระหว่าง 0 ถึง 1:
 
-```
+```python
 0 -------- 0.5 -------- 1
 |           |           |
 Impossible  Unlikely  Likely    Certain
@@ -53,7 +53,7 @@ Impossible  Unlikely  Likely    Certain
 
 ## การคำนวณ Probability
 
-```python
+```
 # Probability = (favorable outcomes) / (total outcomes)
 
 # Coin flip
@@ -82,7 +82,7 @@ P_no_rain = 1 - 0.3  # 0.7
 
 ต้องเกิดทั้งสองเหตุการณ์
 
-```python
+```
 # Flip two coins
 # P(both heads) = P(first is heads) AND P(second is heads)
 P_both_heads = 0.5 * 0.5  # 0.25 or 25%
@@ -95,7 +95,7 @@ P_both_sixes = (1/6) * (1/6)  # 1/36 or 2.78%
 
 เกิดอย่างน้อยหนึ่งเหตุการณ์
 
-```python
+```
 # P(A or B) = P(A) + P(B) - P(A and B)
 
 # Roll die: get 1 OR 2
@@ -111,7 +111,7 @@ P_heart_or_ace = (13/52) + (4/52) - (1/52)  # 16/52 or 30.77%
 ### Independent Events
 เหตุการณ์หนึ่งไม่กระทบอีกเหตุการณ์หนึ่ง
 
-```python
+```
 # Two coin flips are independent
 P(HH) = P(H) * P(H) = 0.5 * 0.5 = 0.25
 ```
@@ -119,7 +119,7 @@ P(HH) = P(H) * P(H) = 0.5 * 0.5 = 0.25
 ### Dependent Events
 เหตุการณ์หนึ่งกระทบอีกเหตุการณ์หนึ่ง
 
-```python
+```
 # Draw two cards without replacement
 # First card affects what remains for second
 
@@ -131,7 +131,7 @@ P(both_aces) = (4/52) * (3/51)  # 12/2652 or 0.45%
 
 P(B|A) = Probability ของ B เมื่อ A เกิดขึ้นแล้ว
 
-```python
+```
 # P(person has disease | test positive)
 # Written as P(disease | positive)
 
@@ -150,7 +150,7 @@ P(pos_and_disease) = 0.01 * 0.99  # 0.0099
 
 ค่าเฉลี่ยของผลลัพธ์หากทำซ้ำหลาย ๆ ครั้ง
 
-```python
+```
 # Expected value = sum of (probability * value)
 
 # Game: Flip coin, heads you win $2, tails you lose $1
@@ -164,7 +164,7 @@ expected_value = (0.5 * 2) + (0.5 * -1)  # $0.50
 
 อัปเดต probability จากหลักฐานใหม่:
 
-```python
+```
 # P(A|B) = P(B|A) * P(A) / P(B)
 
 # Example: Spam detection

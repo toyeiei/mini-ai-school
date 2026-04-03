@@ -47,7 +47,7 @@ AI coding assistant คือเครื่องมือที่เข้า
 
 AI assistant ถูก train จากโค้ดจำนวนมาก พวกมันคาดการณ์ว่าโค้ดถัดไปควรเป็นอะไรโดยอ้างอิงจากบริบท
 
-```
+```javascript
 You: "Write a function to validate an email"
      │
      ▼

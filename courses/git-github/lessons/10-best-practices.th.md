@@ -4,7 +4,7 @@
 
 ## Commit บ่อยๆ
 
-```bash
+```
 # ดี: commits เล็กๆ ที่เน้นหนึ่งอย่าง
 git commit -m "Add user login form"
 git commit -m "Style login form"
@@ -13,7 +13,7 @@ git commit -m "Add login validation"
 
 ## เขียนข้อความที่ดี
 
-```
+```bash
 หัวข้อ (ไม่เกิน 50 ตัวอักษร)
 
 ย่อหน้าอธิบาย WHY และ WHAT
@@ -38,7 +38,7 @@ git commit -m "Add user authentication
 
 ## รักษาความสะอาด
 
-```bash
+```
 # ก่อน merge อัปเดตจาก main ก่อน
 git checkout main
 git pull

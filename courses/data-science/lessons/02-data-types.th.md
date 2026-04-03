@@ -67,7 +67,7 @@ satisfaction = ['Low', 'Medium', 'High']
 - อุณหภูมิรายชั่วโมง
 - ยอดขายรายเดือน
 
-```python
+```
 # Daily temperatures over a week
 temperatures = [72, 75, 68, 70, 74, 78, 76]
 dates = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -100,7 +100,7 @@ review = "This product exceeded my expectations!"
 
 บางครั้งคุณอาจต้องเปลี่ยน data type:
 
-```python
+```
 # String to number
 age = int("25")
 
@@ -116,7 +116,7 @@ encoded = size_map['M']  # Returns 2
 
 ข้อมูลจริงมักจะมีค่าที่หาย:
 
-```python
+```
 # Representing missing data
 height = None       # Python way
 height = float('nan')  # Not a Number

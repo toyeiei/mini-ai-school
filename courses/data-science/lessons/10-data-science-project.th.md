@@ -6,7 +6,7 @@
 
 เราจะวิเคราะห์ข้อมูลภาพยนตร์:
 
-```python
+```
 # movies.csv columns:
 # title, genre, year, rating, runtime, box_office
 
@@ -52,7 +52,7 @@ print(df.head())
 
 ### คำนวณ Measures of Center
 
-```python
+```
 # Average rating by genre
 avg_ratings = df.groupby('genre')['rating'].mean()
 print(avg_ratings)
@@ -64,7 +64,7 @@ print(avg_box_office)
 
 ### คำนวณ Spread
 
-```python
+```
 # Standard deviation of ratings
 rating_std = df['rating'].std()
 print(f"Rating variation: {rating_std:.2f}")
@@ -76,7 +76,7 @@ print(f"Box office range: ${box_office_range}M")
 
 ### หา Correlations
 
-```python
+```
 # Correlation between rating and box office
 correlation = df['rating'].corr(df['box_office'])
 print(f"Rating-Box Office correlation: {correlation:.3f}")
@@ -104,7 +104,7 @@ plt.show()
 
 ## ขั้นตอนที่ 5: ตีความผลลัพธ์
 
-```python
+```
 # Summary
 print("""
 Analysis Results:

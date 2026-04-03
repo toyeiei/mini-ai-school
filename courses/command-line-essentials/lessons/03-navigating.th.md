@@ -11,7 +11,7 @@ pwd
 ```
 
 ผลลัพธ์:
-```
+```bash
 /Users/kasidis/Projects
 ```
 
@@ -26,7 +26,7 @@ ls
 ```
 
 ผลลัพธ์:
-```
+```bash
 Desktop    Downloads    Documents    Pictures
 ```
 

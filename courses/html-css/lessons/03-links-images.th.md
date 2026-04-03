@@ -36,7 +36,7 @@ Attributes:
 
 ## โครงสร้างโฟลเดอร์
 
-```
+```html
 my-site/
 ├── index.html
 ├── about.html

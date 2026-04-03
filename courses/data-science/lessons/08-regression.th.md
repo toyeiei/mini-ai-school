@@ -6,7 +6,7 @@ Regression ทำนายค่าผลลัพธ์ที่เป็นต
 
 หาเส้นตรงที่ fit กับความสัมพันธ์ระหว่าง X และ Y ได้ดีที่สุด
 
-```python
+```
 # Example: Predict house price from size
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,7 +32,7 @@ print(f"Predicted price for {new_size} sq ft: ${predicted_price[0]:.2f}k")
 
 ## สมการ Regression
 
-```
+```python
 Y = b0 + b1*X + error
    |    |      |
    |    |      X (input variable)
@@ -44,7 +44,7 @@ Y = b0 + b1*X + error
 
 ลดผลรวมของ residual กำลังสองให้น้อยที่สุด (ผลต่างระหว่างค่าทำนายและค่าจริง):
 
-```python
+```
 # Residuals
 predictions = model.predict(X)
 residuals = y - predictions
@@ -76,7 +76,7 @@ print(f"R-squared: {r2:.3f}")
 
 ใช้หลาย features ในการทำนาย
 
-```python
+```
 # Features: size, bedrooms, age
 X = np.array([
     [1400, 3, 10],   # House 1
@@ -105,7 +105,7 @@ print(f"Coefficients: {model.coef_}")
 
 ## การตรวจสอบข้อสันนิษฐาน
 
-```python
+```
 # Plot residuals
 predictions = model.predict(X)
 residuals = y - predictions
@@ -122,7 +122,7 @@ plt.show()
 
 ## การทำนาย
 
-```python
+```
 # Predict multiple houses
 new_houses = np.array([
     [1700, 3, 12],

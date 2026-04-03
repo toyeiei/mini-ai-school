@@ -5,16 +5,16 @@ Machine learning สอนคอมพิวเตอร์ให้เรีย
 ## Machine Learning คืออะไร?
 
 Programming แบบดั้งเดิม:
-```
+```python
 Rules + Data → Answers
 ```
 
 Machine learning:
-```
+```python
 Data + Answers → Rules
 ```
 
-```python
+```
 # Traditional: You write the rules
 def classify_email(email):
     if 'viagra' in email:
@@ -33,7 +33,7 @@ def classify_email(email):
 ### Supervised Learning
 เรียนรู้จาก labeled data (inputs ที่มี outputs ที่รู้แล้ว)
 
-```python
+```
 # Examples:
 # - Email spam detection (labels: spam/ham)
 # - House price prediction (labels: actual prices)
@@ -47,7 +47,7 @@ y = [price, price, price, ...]       # Labels (output)
 ### Unsupervised Learning
 หา pattern ในข้อมูลที่ไม่มี label
 
-```python
+```
 # Examples:
 # - Customer segmentation (group similar customers)
 # - Anomaly detection (find unusual transactions)
@@ -60,7 +60,7 @@ X = [[feature1], [feature2], [feature3], ...]  # No labels!
 ### Reinforcement Learning
 เรียนรู้ผ่านการลองผิดลองถูกพร้อมรางวัล
 
-```python
+```
 # Examples:
 # - Game playing (win = reward)
 # - Robot navigation
@@ -137,7 +137,7 @@ print(segments)  # [0, 0, 0, 1, 1, 0]
 
 ## Workflow ของ ML
 
-```python
+```
 # 1. Load and explore data
 import pandas as pd
 df = pd.read_csv('data.csv')
@@ -186,7 +186,7 @@ prediction = model.predict(new_data)
 ### Overfitting
 โมเดลจำข้อมูล training ได้หมด แต่ทำงานกับข้อมูลใหม่ได้แย่
 
-```python
+```
 # Too complex (high variance)
 model = DecisionTreeClassifier(max_depth=None)  # Grows fully
 # Training accuracy: 100%
@@ -196,7 +196,7 @@ model = DecisionTreeClassifier(max_depth=None)  # Grows fully
 ### Underfitting
 โมเดลง่ายเกินไป ไม่สามารถจับ pattern ได้
 
-```python
+```
 # Too simple (high bias)
 model = LinearRegression()
 # Training accuracy: 50%
@@ -206,7 +206,7 @@ model = LinearRegression()
 ### Good Fit
 โมเดล generalize ได้ดี
 
-```python
+```
 # Just right
 model = DecisionTreeClassifier(max_depth=5)
 # Training accuracy: 85%

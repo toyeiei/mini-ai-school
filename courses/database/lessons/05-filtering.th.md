@@ -23,7 +23,7 @@ SELECT * FROM users WHERE age > 25;
 
 ### ตัวอย่าง
 
-```sql
+```
 -- ผู้ใช้ที่อายุ 30 ปีพอดี
 SELECT * FROM users WHERE age = 30;
 
@@ -57,7 +57,7 @@ SELECT * FROM users WHERE city = 'boston';  -- ใช้ได้เช่นก
 
 หาค่าที่ตรงกับ pattern:
 
-```sql
+```
 -- ชื่อที่ขึ้นต้นด้วย 'A'
 SELECT * FROM users WHERE name LIKE 'A%';
 
@@ -73,7 +73,7 @@ SELECT * FROM users WHERE name LIKE '%son%';
 - `%` ตรงกับอักขระกี่ตัวก็ได้
 - `_` ตรงกับอักขระเพียงหนึ่งตัว
 
-```sql
+```
 -- 'A%' = ขึ้นต้นด้วย A
 -- '%a' = ลงท้ายด้วย a
 -- '%in%' = มี 'in' อยู่
@@ -111,7 +111,7 @@ WHERE (price > 100 AND stock > 10) OR category = 'Sale';
 
 ## การยกเว้นผลลัพธ์ (NOT)
 
-```sql
+```
 -- ผู้ใช้ที่ไม่ได้อยู่ใน New York
 SELECT * FROM users WHERE NOT city = 'New York';
 
@@ -123,7 +123,7 @@ SELECT * FROM products WHERE NOT stock > 0;
 
 NULL หมายถึง "ไม่มีค่า" หรือ "ไม่ทราบ" ใช้ IS NULL หรือ IS NOT NULL:
 
-```sql
+```
 -- ผู้ใช้ที่ไม่ได้ระบุเมือง
 SELECT * FROM users WHERE city IS NULL;
 
@@ -135,7 +135,7 @@ SELECT * FROM users WHERE city IS NOT NULL;
 
 ตรงกับค่าใดค่าหนึ่งในรายการ:
 
-```sql
+```
 -- ผู้ใช้จากเมืองเหล่านี้
 SELECT * FROM users
 WHERE city IN ('New York', 'Boston', 'Chicago');
@@ -151,7 +151,7 @@ WHERE city = 'New York'
 
 ตรงกับช่วง (รวมค่าปลายทั้งสองด้าน):
 
-```sql
+```
 -- ผู้ใช้ที่อายุ 25 ถึง 35 ปี
 SELECT * FROM users WHERE age BETWEEN 25 AND 35;
 

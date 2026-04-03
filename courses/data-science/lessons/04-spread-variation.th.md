@@ -6,7 +6,7 @@
 
 ค่าต่างระหว่างค่ามากที่สุดและค่าน้อยที่สุด
 
-```python
+```
 # Range
 prices = [15, 18, 22, 25, 28, 45]
 minimum = min(prices)  # 15
@@ -20,7 +20,7 @@ Range ง่ายแต่ไวต่อ outlier
 
 ค่าเฉลี่ยของผลต่างกำลังสองจากค่า mean
 
-```python
+```
 # Calculate variance
 data = [2, 4, 4, 4, 5, 5, 7, 9]
 mean = sum(data) / len(data)  # 5
@@ -41,7 +41,7 @@ print(f"Variance: {variance}")  # 4
 
 ### Population vs Sample Variance
 
-```python
+```
 # Population variance (divide by N)
 population_variance = sum(differences) / len(data)
 
@@ -61,7 +61,7 @@ variance = 4
 std_dev = math.sqrt(variance)  # 2
 ```
 
-```python
+```
 # Data with low spread
 low = [48, 49, 50, 51, 52]
 low_mean = 50
@@ -80,7 +80,7 @@ Mean เท่ากัน (50) แต่ spread ต่างกันมาก!
 ### Percentile
 ค่าที่มีเปอร์เซ็นต์ของข้อมูลอยู่ต่ำกว่า
 
-```python
+```
 # 25th percentile means 25% of data is below this value
 data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 p25 = 3.25    # 25% below
@@ -103,7 +103,7 @@ IQR = Q3 - Q1  # Interquartile range = 4.5
 
 ### Box Plot Visualization
 
-```
+```python
     |-----------[  box  ]-----------|
 min              Q2            max
    |             |              |
@@ -123,7 +123,7 @@ IQR = Q3 - Q1
 
 IQR ทนต่อ outlier ใช้ตรวจจับ outlier:
 
-```python
+```
 # Outlier detection
 def find_outliers(data):
     sorted_data = sorted(data)
@@ -137,7 +137,7 @@ def find_outliers(data):
 
 ## Standard Deviation vs Variance
 
-```python
+```
 # Variance (squared units)
 height_variance = 25  # inches squared
 
@@ -155,7 +155,7 @@ height_std = 5  # inches
 CV = (standard_deviation / mean) * 100
 ```
 
-```python
+```
 # Compare variability
 prices = [10, 12, 14, 16, 18]  # CV = 24%
 weights = [100, 102, 104, 106, 108]  # CV = 2.4%

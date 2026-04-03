@@ -15,7 +15,7 @@ SELECT * FROM users ORDER BY name;
 - **ASC** (ค่าเริ่มต้น) - จากน้อยไปมาก, A ถึง Z
 - **DESC** - จากมากไปน้อย, Z ถึง A
 
-```sql
+```
 -- ผู้ใช้ที่อายุน้อยที่สุดก่อน
 SELECT * FROM users ORDER BY age ASC;
 
@@ -37,7 +37,7 @@ SELECT * FROM users ORDER BY city ASC, name ASC;
 นี่จะเรียงตามเมืองก่อน แล้วเรียงตามชื่อภายในแต่ละเมือง
 
 ตัวอย่างผลลัพธ์:
-```
+```sql
 +--------+-------------+-------+
 | id     | name        | city  |
 +--------+-------------+-------+
@@ -55,7 +55,7 @@ SELECT * FROM users ORDER BY city ASC, name ASC;
 
 ดึงเฉพาะจำนวนแถวที่ต้องการ:
 
-```sql
+```
 -- ดึงผู้ใช้ 10 คนแรก
 SELECT * FROM users LIMIT 10;
 
@@ -67,7 +67,7 @@ SELECT * FROM users ORDER BY age DESC LIMIT 5;
 
 ข้ามแถวบางส่วนก่อนคืนผลลัพธ์:
 
-```sql
+```
 -- ดึงผู้ใช้คนที่ 11-20 (หน้าที่ 2 จาก 10 คน)
 SELECT * FROM users ORDER BY name LIMIT 10 OFFSET 10;
 ```
@@ -76,7 +76,7 @@ SELECT * FROM users ORDER BY name LIMIT 10 OFFSET 10;
 
 Database บางตัวรองรับ syntax นี้:
 
-```sql
+```
 -- ดึงผู้ใช้คนที่ 6-10
 SELECT * FROM users LIMIT 5 OFFSET 5;
 -- หรือ
@@ -87,21 +87,21 @@ SELECT * FROM users LIMIT 5, 5;
 
 ### Top N ตามค่า
 
-```sql
+```
 -- สินค้า 3 อันดับที่แพงที่สุด
 SELECT * FROM products ORDER BY price DESC LIMIT 3;
 ```
 
 ### Bottom N ตามค่า
 
-```sql
+```
 -- สินค้า 3 อันดับที่ถูกที่สุด
 SELECT * FROM products ORDER BY price ASC LIMIT 3;
 ```
 
 ### Pagination
 
-```sql
+```
 -- หน้า 1
 SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 0;
 
@@ -116,7 +116,7 @@ SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 20;
 
 ค่า NULL มักถูกเรียงก่อนในลำดับน้อยไปมาก และหลังในลำดับมากไปน้อย:
 
-```sql
+```
 -- ผู้ใช้ที่มีเมืองก่อน แล้วตามด้วยที่ไม่มี
 SELECT * FROM users ORDER BY city ASC NULLS FIRST;
 ```

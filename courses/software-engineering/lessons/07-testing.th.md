@@ -62,7 +62,7 @@ async function testLogin() {
 2. เขียนโค้ดขั้นต่ำที่ทำให้ผ่าน
 3. Refactor
 
-```bash
+```
 # Red - เขียน test ที่ล้มเหลว
 # Green - เขียนโค้ดขั้นต่ำ
 # Refactor - ปรับปรุงโค้ด
@@ -116,7 +116,7 @@ console.assert(result === true);
 
 Coverage วัดว่ามีโค้ดถูกทดสอบเท่าไร
 
-```bash
+```
 # รัน tests และตรวจสอบ coverage
 npm test -- --coverage
 

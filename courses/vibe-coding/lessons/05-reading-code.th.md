@@ -114,7 +114,7 @@ function authenticate(user, password) {
 
 ถ้าโค้ดที่ AI สร้างดูสับสน:
 
-```
+```javascript
 "This function is hard to follow. Can you rewrite it with:
 - Clearer variable names
 - Comments explaining each step

@@ -65,7 +65,7 @@ AI ไม่รู้บริบทเฉพาะของคุณ:
 
 ให้บริบทในทุก prompt:
 
-```
+```bash
 "Here's our user model:
 { id, email, createdAt }
 
@@ -143,7 +143,7 @@ No social links, no activity feed, no admin features.
 
 ### The Solution
 
-```bash
+```
 # Commit after each working iteration
 git add .
 git commit -m "feat: basic profile page"

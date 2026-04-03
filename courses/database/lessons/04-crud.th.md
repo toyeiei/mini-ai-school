@@ -106,7 +106,7 @@ DELETE FROM users WHERE id = 3;
 
 ### ความปลอดภัยก่อนอื่นเสมอ: ใช้ WHERE เสมอ
 
-```sql
+```
 -- อันตราย! ลบผู้ใช้ที่อายุเกิน 100 (น่าจะเป็นทุกคน)
 DELETE FROM users WHERE age > 100;
 ```
@@ -115,7 +115,7 @@ DELETE FROM users WHERE age > 100;
 
 ตัวอย่างเต็ม:
 
-```sql
+```
 -- สร้างตาราง
 CREATE TABLE products (
     id INTEGER PRIMARY KEY,

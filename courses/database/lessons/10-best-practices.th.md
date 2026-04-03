@@ -6,7 +6,7 @@
 
 ### เริ่มจากแบบ Normalized
 
-```sql
+```
 -- ดี: ตารางแบบ normalized
 users (id, name, email)
 orders (id, user_id, date)
@@ -16,7 +16,7 @@ products (id, name, price)
 
 ### Denormalize เฉพาะเมื่อจำเป็น
 
-```sql
+```
 -- เพิ่มข้อมูลซ้ำซ้อนเฉพาะเมื่อมีปัญหาประสิทธิภาพที่พิสูจน์แล้ว
 orders (id, user_id, date, total_amount)  -- total_amount เป็นค่า cache
 ```
@@ -27,7 +27,7 @@ orders (id, user_id, date, total_amount)  -- total_amount เป็นค่า 
 
 ### ระบุคอลัมน์ให้ชัดเจน
 
-```sql
+```
 -- ไม่ดี: SELECT *
 SELECT * FROM users WHERE id = 1;
 
@@ -42,7 +42,7 @@ SELECT id, name, email FROM users WHERE id = 1;
 
 ### ใช้ Alias ที่มีความหมาย
 
-```sql
+```
 -- ไม่ดี
 SELECT u.id, o.id FROM users u INNER JOIN orders o ON u.id = o.user_id;
 
@@ -56,7 +56,7 @@ INNER JOIN orders o ON u.id = o.user_id;
 
 ### อย่าไว้ใจ input จากผู้ใช้
 
-```sql
+```
 -- ไม่ดี: เสี่ยงต่อ SQL injection
 "SELECT * FROM users WHERE name = '" + user_input + "'"
 
@@ -75,7 +75,7 @@ INNER JOIN orders o ON u.id = o.user_id;
 
 ### สร้าง Index อย่างมีเหตุผล
 
-```sql
+```
 -- เพิ่ม index บนคอลัมน์ที่กรอง/เรียงลำดับบ่อย
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_orders_user_id ON orders(user_id);
@@ -88,7 +88,7 @@ CREATE INDEX idx_orders_user_id ON orders(user_id);
 
 ### จำกัดผลลัพธ์
 
-```sql
+```
 -- ไม่ดี: ดึงแถวทั้งหมด
 SELECT * FROM logs;
 
@@ -98,7 +98,7 @@ SELECT * FROM logs ORDER BY created_at DESC LIMIT 100;
 
 ### หลีกเลี่ยง SELECT * ใน Join
 
-```sql
+```
 -- ไม่ดี: ดึงคอลัมน์ที่ไม่จำเป็น
 SELECT * FROM orders o
 INNER JOIN users u ON o.user_id = u.id;
@@ -112,7 +112,7 @@ INNER JOIN users u ON o.user_id = u.id;
 
 ### ทดสอบ Query ที่เปลี่ยนแปลงข้อมูล
 
-```sql
+```
 -- ก่อนลบ ให้ select ก่อน
 SELECT * FROM users WHERE city = 'Closed';
 
@@ -122,7 +122,7 @@ DELETE FROM users WHERE city = 'Closed';
 
 ### เก็บ Backup
 
-```sql
+```
 -- SQLite backup
 sqlite3 database.db ".backup backup.db"
 
@@ -134,7 +134,7 @@ sqlite3 database.db ".dump" > dump.sql
 
 ใช้ migration files:
 
-```sql
+```
 -- 001_create_users.sql
 CREATE TABLE users (
     id INTEGER PRIMARY KEY,
@@ -150,7 +150,7 @@ ALTER TABLE users ADD COLUMN city TEXT;
 
 ### ตรวจสอบ Error
 
-```sql
+```
 -- หลัง CREATE TABLE ให้ตรวจสอบ
 SELECT * FROM sqlite_master WHERE type='table' AND name='users';
 

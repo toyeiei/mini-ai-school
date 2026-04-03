@@ -120,7 +120,7 @@ function filterItemsByType(items, type) {
 
 ### Simplify Code
 
-```
+```bash
 "This function is hard to follow. Can you simplify it
 while keeping the same behavior?"
 ```
@@ -173,7 +173,7 @@ contribute to the output."
 
 ตรวจสอบเสมอว่าพฤติกรรมไม่เปลี่ยน:
 
-```bash
+```
 # Run tests before
 npm test
 

@@ -22,7 +22,7 @@ git config --global user.email "you@example.com"
 
 ## สร้าง Repository
 
-```bash
+```
 # สร้างโฟลเดอร์ใหม่
 mkdir my-project
 cd my-project
