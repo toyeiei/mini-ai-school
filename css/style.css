@@ -104,6 +104,44 @@ body {
     box-shadow: inset 3px 0 0 var(--accent);
 }
 
+/* Language toggle */
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #333;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+.lang-btn:hover {
+    background: #2a2a2a;
+    color: #fff;
+}
+
+.lang-btn.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.lang-sep {
+    color: #444;
+    font-size: 0.75rem;
+}
+
 /* Lesson completion indicators */
 .lesson-list li a.completed {
     position: relative;

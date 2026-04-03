@@ -1,10 +1,68 @@
+// Language management
+const LANG_STORAGE_KEY = 'preferred_lang';
+const DEFAULT_LANG = 'en';
+
+// In-memory cache for instant language switching
+const lessonCache = {};
+
+function clearLessonCache() {
+    Object.keys(lessonCache).forEach(k => delete lessonCache[k]);
+}
+
+function getCurrentLang() {
+    try {
+        return localStorage.getItem(LANG_STORAGE_KEY) || DEFAULT_LANG;
+    } catch {
+        return DEFAULT_LANG;
+    }
+}
+
+function setCurrentLang(lang) {
+    try {
+        localStorage.setItem(LANG_STORAGE_KEY, lang);
+    } catch {
+        // localStorage not available
+    }
+}
+
+function toggleLang() {
+    const current = getCurrentLang();
+    const newLang = current === 'en' ? 'th' : 'en';
+    setCurrentLang(newLang);
+    return newLang;
+}
+
+// Get lesson path based on current language
+function getLessonPath(lessonId, lang) {
+    const courseId = window.COURSE_CONFIG?._courseId || getCourseId();
+    if (lang === 'th') {
+        return '/courses/' + courseId + '/lessons/' + lessonId + '.th.md';
+    }
+    return '/courses/' + courseId + '/lessons/' + lessonId + '.md';
+}
+
+// Preload the alternate language version in the background
+function preloadAlternateLang(lessonId, currentLang) {
+    const altLang = currentLang === 'en' ? 'th' : 'en';
+    const cacheKey = lessonId + ':' + altLang;
+    if (lessonCache[cacheKey]) return;
+
+    const controller = new AbortController();
+    fetch(getLessonPath(lessonId, altLang), { signal: controller.signal })
+        .then(res => {
+            if (res.ok) return res.text();
+            throw new Error('Not found');
+        })
+        .then(md => { lessonCache[cacheKey] = md; })
+        .catch(() => { /* alternate lang not available or aborted, that's ok */ });
+}
+
 function initApp() {
     function init() {
         // Configure marked for Prism integration (marked v15 API)
         if (typeof marked !== 'undefined' && typeof Prism !== 'undefined') {
             marked.use({
                 renderer: {
-                    // marked v15 passes token objects, not individual parameters
                     code: function(token) {
                         const code = token.text || token;
                         const lang = token.lang || 'javascript';
@@ -58,11 +116,41 @@ function renderSidebar(sidebarEl, config) {
 
     // Home button
     const homeLink = document.createElement('a');
-    homeLink.href = '/landing/index.html';
+    homeLink.href = '/index.html';
     homeLink.className = 'sidebar-home';
     homeLink.setAttribute('aria-label', 'Back to course list');
     homeLink.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
     sidebarEl.appendChild(homeLink);
+
+    // Language toggle
+    const langToggle = document.createElement('div');
+    langToggle.className = 'lang-toggle';
+    const currentLang = getCurrentLang();
+    langToggle.innerHTML = `
+        <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn ${currentLang === 'th' ? 'active' : ''}" data-lang="th">TH</button>
+    `;
+    sidebarEl.appendChild(langToggle);
+
+    // Add lang toggle event listeners
+    langToggle.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const clickedBtn = e.target.closest('.lang-btn');
+            if (!clickedBtn) return;
+            const newLang = clickedBtn.dataset.lang;
+            setCurrentLang(newLang);
+            // Update active state
+            langToggle.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            clickedBtn.classList.add('active');
+            // Reload current lesson
+            const activeLink = document.querySelector('.lesson-list a.active');
+            if (activeLink) {
+                const lessonId = activeLink.getAttribute('data-lesson');
+                loadLessonById(lessonId, newLang);
+            }
+        });
+    });
 
     const header = document.createElement('header');
     header.className = 'sidebar-header';
@@ -99,6 +187,7 @@ function initLessonNavigation(config) {
     const contentArea = document.getElementById('lesson-content');
     const scrollContainer = document.querySelector('.content');
     let currentController = null;
+    let currentLang = getCurrentLang();
 
     // Lesson completion tracking
     function getStorageKey() {
@@ -201,7 +290,6 @@ function initLessonNavigation(config) {
     }
 
     function generateCertificate(config, studentName) {
-        // Sanitize name - escape HTML entities
         const safeName = studentName
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
@@ -213,7 +301,6 @@ function initLessonNavigation(config) {
             year: 'numeric'
         });
 
-        // Generate random certificate ID
         const certId = Math.random().toString(36).substring(2, 10).toUpperCase();
 
         const certHTML = `
@@ -249,7 +336,6 @@ function initLessonNavigation(config) {
         overlay.innerHTML = certHTML;
         document.body.appendChild(overlay);
 
-        // Trigger confetti
         setTimeout(() => launchConfetti(), 100);
     }
 
@@ -271,10 +357,6 @@ function initLessonNavigation(config) {
         }
     }
 
-    function getLessonPath(lessonId) {
-        return '/courses/' + config._courseId + '/lessons/' + lessonId + '.md';
-    }
-
     function sanitizeHTML(html) {
         if (typeof DOMPurify !== 'undefined') {
             return DOMPurify.sanitize(html);
@@ -293,41 +375,67 @@ function initLessonNavigation(config) {
         contentArea.appendChild(p);
     }
 
-    async function loadLesson(filename) {
+    // Load lesson with language support, cache, and fallback
+    async function loadLessonById(lessonId, lang) {
         if (currentController) {
             currentController.abort();
         }
         currentController = new AbortController();
+        currentLang = lang || getCurrentLang();
 
         try {
-            contentArea.innerHTML = '<p class="loading">Loading...</p>';
-            const response = await fetch(
-                getLessonPath(filename),
-                { signal: currentController.signal }
-            );
-            if (!response.ok) throw new Error('Lesson not found');
-            const markdown = await response.text();
+            const cacheKey = lessonId + ':' + currentLang;
 
-            if (typeof marked === 'undefined') {
-                renderError('Markdown parser not available');
+            // Check cache first for instant rendering
+            if (lessonCache[cacheKey]) {
+                renderMarkdown(lessonCache[cacheKey], lessonId);
+                preloadAlternateLang(lessonId, currentLang);
                 return;
             }
 
-            contentArea.innerHTML = sanitizeHTML(marked.parse(markdown));
+            contentArea.innerHTML = '<p class="loading">Loading...</p>';
 
-            // Mark lesson as complete
-            markLessonComplete(filename);
+            // Try requested language
+            let path = getLessonPath(lessonId, currentLang);
+            let response = await fetch(path, { signal: currentController.signal });
 
-            if (scrollContainer) {
-                scrollContainer.scrollTop = 0;
+            // Fallback to English if Thai not found
+            if (!response.ok && currentLang === 'th') {
+                path = getLessonPath(lessonId, 'en');
+                response = await fetch(path, { signal: currentController.signal });
             }
 
-            const heading = contentArea.querySelector('h1');
-            if (heading) heading.focus();
+            if (!response.ok) throw new Error('Lesson not found');
+            const markdown = await response.text();
+
+            // Store in cache
+            lessonCache[cacheKey] = markdown;
+
+            renderMarkdown(markdown, lessonId);
+
+            // Preload alternate language for instant toggle
+            preloadAlternateLang(lessonId, currentLang);
         } catch (error) {
             if (error.name === 'AbortError') return;
             renderError(error.message);
         }
+    }
+
+    function renderMarkdown(markdown, lessonId) {
+        if (typeof marked === 'undefined') {
+            renderError('Markdown parser not available');
+            return;
+        }
+
+        contentArea.innerHTML = sanitizeHTML(marked.parse(markdown));
+        markLessonComplete(lessonId);
+
+        if (scrollContainer) {
+            scrollContainer.scrollTop = 0;
+        }
+
+        const heading = contentArea.querySelector('h1');
+        if (heading) heading.focus();
     }
 
     function setActiveLink(clickedLink) {
@@ -344,7 +452,7 @@ function initLessonNavigation(config) {
             e.preventDefault();
             const lesson = link.getAttribute('data-lesson');
             setActiveLink(link);
-            loadLesson(lesson);
+            loadLessonById(lesson, getCurrentLang());
         });
     });
 
@@ -355,12 +463,12 @@ function initLessonNavigation(config) {
     const firstLesson = document.querySelector('.lesson-list a.active');
     if (firstLesson) {
         setActiveLink(firstLesson);
-        loadLesson(firstLesson.getAttribute('data-lesson'));
+        loadLessonById(firstLesson.getAttribute('data-lesson'), getCurrentLang());
     }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initApp, getCourseId, renderSidebar, initLessonNavigation };
+    module.exports = { initApp, getCourseId, renderSidebar, initLessonNavigation, getCurrentLang, setCurrentLang, toggleLang, clearLessonCache };
 } else {
     initApp();
 }

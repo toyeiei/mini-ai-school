@@ -172,7 +172,19 @@ function setupMocks() {
     mockAbortControllerCalls = [];
     const mockLocalStorage = {};
 
-    global.window = { location: { search: '' } };
+    // Clear lesson cache between tests
+    const app = require('../app');
+    if (app.clearLessonCache) app.clearLessonCache();
+
+    global.window = new Proxy({ location: { search: '' } }, {
+        get(target, prop) {
+            if (prop in target) return target[prop];
+            return global[prop];
+        },
+        has(target, prop) {
+            return prop in target || prop in global;
+        }
+    });
 
     global.localStorage = {
         getItem(key) { return mockLocalStorage[key] || null; },

@@ -49,21 +49,61 @@
 
         /* Header */
         header {
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             border-bottom: 1px solid var(--border);
         }
 
-        header h1 {
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-top h1 {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
 
-        header p {
+        .header-top p {
             color: var(--text-muted);
             font-size: 0.95rem;
+        }
+
+        /* Language toggle */
+        .lang-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: var(--bg-alt);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: #fff;
         }
 
         /* Hero */
@@ -159,7 +199,7 @@
 
         /* Responsive */
         @media (max-width: 600px) {
-            header h1 {
+            .header-top h1 {
                 font-size: 1.5rem;
             }
 
@@ -180,65 +220,101 @@
 <body>
     <header>
         <div class="container">
-            <h1>Mini AI School</h1>
-            <p>Learn programming through text-based lessons</p>
+            <div class="header-top">
+                <h1>Mini AI School</h1>
+                <div class="lang-toggle" id="langToggle">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="th">TH</button>
+                </div>
+            </div>
+            <p class="tagline" data-en="Learn programming through text-based lessons" data-th="เรียนรู้การเขียนโปรแกรมผ่านบทเรียนแบบข้อความ">Learn programming through text-based lessons</p>
         </div>
     </header>
 
     <main class="container">
         <section class="hero">
-            <h2>Practical courses for building real skills</h2>
-            <p>Five focused courses covering JavaScript fundamentals, software engineering principles, and modern AI-assisted development.</p>
+            <h2 data-en="Practical courses for building real skills" data-th="หลักสูตรปฏิบัติเพื่อสร้างทักษะจริง">Practical courses for building real skills</h2>
+            <p data-en="Eight focused courses from HTML basics to AI-assisted development." data-th="แปดหลักสูตรเข้มข้น ตั้งแต่พื้นฐาน HTML ไปจนถึงการพัฒนาด้วย AI">Eight focused courses from HTML basics to AI-assisted development.</p>
         </section>
 
         <section class="courses">
             <a href="/courses/javascript/index.html" class="course-card">
                 <div class="course-number">01</div>
-                <h3>JavaScript Fundamentals</h3>
-                <p>Core JavaScript: variables, functions, arrays, objects, async programming, and best practices.</p>
+                <h3 data-en="JavaScript Fundamentals" data-th="พื้นฐาน JavaScript">JavaScript Fundamentals</h3>
+                <p data-en="Core JavaScript: variables, functions, arrays, objects, async programming, and best practices." data-th="JavaScript หลัก: ตัวแปร, ฟังก์ชัน, อาร์เรย์, ออบเจกต์, การเขียนโปรแกรมแบบ async และแนวปฏิบัติที่ดี">Core JavaScript: variables, functions, arrays, objects, async programming, and best practices.</p>
                 <div class="course-meta">
-                    <span>10 lessons</span>
-                    <span>Beginner friendly</span>
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Beginner friendly" data-th="เหมาะสำหรับผู้เริ่มต้น">Beginner friendly</span>
+                </div>
+            </a>
+
+            <a href="/courses/html-css/index.html" class="course-card">
+                <div class="course-number">02</div>
+                <h3 data-en="HTML & CSS Basics" data-th="พื้นฐาน HTML & CSS">HTML & CSS Basics</h3>
+                <p data-en="Build web pages from scratch: elements, styling, layout with flexbox, and your first project." data-th="สร้างเว็บเพจตั้งแต่เริ่มต้น: อิลีเมนต์, สไตล์, เลย์เอาต์ด้วย flexbox และโปรเจกต์แรกของคุณ">Build web pages from scratch: elements, styling, layout with flexbox, and your first project.</p>
+                <div class="course-meta">
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Beginner friendly" data-th="เหมาะสำหรับผู้เริ่มต้น">Beginner friendly</span>
+                </div>
+            </a>
+
+            <a href="/courses/git-github/index.html" class="course-card">
+                <div class="course-number">03</div>
+                <h3 data-en="Git & GitHub" data-th="Git & GitHub">Git & GitHub</h3>
+                <p data-en="Version control fundamentals: commits, branching, merging, collaboration, and best practices." data-th="พื้นฐานการควบคุมเวอร์ชัน: commits, branching, merging, การทำงานร่วมกัน และแนวปฏิบัติที่ดี">Version control fundamentals: commits, branching, merging, collaboration, and best practices.</p>
+                <div class="course-meta">
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Essential skills" data-th="ทักษะจำเป็น">Essential skills</span>
+                </div>
+            </a>
+
+            <a href="/courses/api-basics/index.html" class="course-card">
+                <div class="course-number">04</div>
+                <h3 data-en="API Basics" data-th="พื้นฐาน API">API Basics</h3>
+                <p data-en="Learn how web APIs work: REST, HTTP methods, JSON, fetch, and build your first API app." data-th="เรียนรู้ว่า Web API ทำงานอย่างไร: REST, HTTP methods, JSON, fetch และสร้างแอป API แรกของคุณ">Learn how web APIs work: REST, HTTP methods, JSON, fetch, and build your first API app.</p>
+                <div class="course-meta">
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Backend fundamentals" data-th="พื้นฐานแบ็กเอนด์">Backend fundamentals</span>
                 </div>
             </a>
 
             <a href="/courses/software-engineering/index.html" class="course-card">
-                <div class="course-number">02</div>
-                <h3>Basic Software Engineering</h3>
-                <p>Problem solving, algorithms, data structures, design patterns, testing, and DevOps basics.</p>
+                <div class="course-number">05</div>
+                <h3 data-en="Basic Software Engineering" data-th="พื้นฐานวิศวกรรมซอฟต์แวร์">Basic Software Engineering</h3>
+                <p data-en="Problem solving, algorithms, data structures, design patterns, testing, and DevOps basics." data-th="การแก้ปัญหา, อัลกอริทึม, โครงสร้างข้อมูล, ดีไซน์แพทเทิร์น, การทดสอบ และพื้นฐาน DevOps">Problem solving, algorithms, data structures, design patterns, testing, and DevOps basics.</p>
                 <div class="course-meta">
-                    <span>10 lessons</span>
-                    <span>Foundational</span>
-                </div>
-            </a>
-
-            <a href="/courses/vibe-coding/index.html" class="course-card">
-                <div class="course-number">03</div>
-                <h3>Basic Vibe Coding</h3>
-                <p>Working with AI assistants, effective prompting, reading generated code, and sustainable AI workflows.</p>
-                <div class="course-meta">
-                    <span>10 lessons</span>
-                    <span>Modern workflow</span>
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Foundational" data-th="พื้นฐาน">Foundational</span>
                 </div>
             </a>
 
             <a href="/courses/database/index.html" class="course-card">
-                <div class="course-number">04</div>
-                <h3>Database 101</h3>
-                <p>SQL fundamentals: tables, CRUD operations, joins, aggregations, and database design.</p>
+                <div class="course-number">06</div>
+                <h3 data-en="Database 101" data-th="ฐานข้อมูลเบื้องต้น">Database 101</h3>
+                <p data-en="SQL fundamentals: tables, CRUD operations, joins, aggregations, and database design." data-th="พื้นฐาน SQL: ตาราง, การ CRUD, joins, aggregations และการออกแบบฐานข้อมูล">SQL fundamentals: tables, CRUD operations, joins, aggregations, and database design.</p>
                 <div class="course-meta">
-                    <span>10 lessons</span>
-                    <span>Data skills</span>
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Data skills" data-th="ทักษะด้านข้อมูล">Data skills</span>
+                </div>
+            </a>
+
+            <a href="/courses/vibe-coding/index.html" class="course-card">
+                <div class="course-number">07</div>
+                <h3 data-en="Basic Vibe Coding" data-th="พื้นฐาน Vibe Coding">Basic Vibe Coding</h3>
+                <p data-en="Working with AI assistants, effective prompting, reading generated code, and sustainable AI workflows." data-th="การทำงานกับ AI assistant, การพร้อมท์ที่มีประสิทธิภาพ, การอ่านโค้ดที่สร้างขึ้น และเวิร์กโฟลว์ AI ที่ยั่งยืน">Working with AI assistants, effective prompting, reading generated code, and sustainable AI workflows.</p>
+                <div class="course-meta">
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Modern workflow" data-th="เวิร์กโฟลว์สมัยใหม่">Modern workflow</span>
                 </div>
             </a>
 
             <a href="/courses/data-science/index.html" class="course-card">
-                <div class="course-number">05</div>
-                <h3>Data Science 101</h3>
-                <p>Statistics basics: measures of center, probability, hypothesis testing, regression, and ML intro.</p>
+                <div class="course-number">08</div>
+                <h3 data-en="Data Science 101" data-th="วิทยาศาสตร์ข้อมูลเบื้องต้น">Data Science 101</h3>
+                <p data-en="Statistics basics: measures of center, probability, hypothesis testing, regression, and ML intro." data-th="พื้นฐานสถิติ: การวัดศูนย์กลาง, ความน่าจะเป็น, การทดสอบสมมติฐาน, การถดถอย และบทนำ ML">Statistics basics: measures of center, probability, hypothesis testing, regression, and ML intro.</p>
                 <div class="course-meta">
-                    <span>10 lessons</span>
-                    <span>Analytics</span>
+                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
+                    <span data-en="Analytics" data-th="วิเคราะห์ข้อมูล">Analytics</span>
                 </div>
             </a>
         </section>
@@ -249,5 +325,40 @@
             <p>Mini AI School</p>
         </div>
     </footer>
+
+    <script>
+        (function() {
+            const LANG_KEY = 'preferred_lang';
+            const toggle = document.getElementById('langToggle');
+            if (!toggle) return;
+
+            const translatables = document.querySelectorAll('[data-en][data-th]');
+
+            function applyLang(lang) {
+                translatables.forEach(el => {
+                    el.textContent = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
+                });
+                document.documentElement.lang = lang;
+            }
+
+            // Sync UI with stored preference
+            const stored = localStorage.getItem(LANG_KEY) || 'en';
+            toggle.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === stored);
+            });
+            applyLang(stored);
+
+            // Handle clicks — instant swap, no network request
+            toggle.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    localStorage.setItem(LANG_KEY, lang);
+                    toggle.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    applyLang(lang);
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
