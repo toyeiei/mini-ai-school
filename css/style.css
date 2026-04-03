@@ -416,21 +416,34 @@ body {
     background: #ddd;
 }
 
-/* Print styles */
+/* Print styles - only print certificate */
 @media print {
-    .cert-overlay {
+    body {
         background: #fff;
-        position: static;
     }
 
-    .cert-actions {
-        display: none;
+    .container,
+    .sidebar,
+    #lesson-content,
+    .cert-overlay .certificate-wrapper .cert-actions {
+        display: none !important;
+    }
+
+    .cert-overlay {
+        position: static;
+        background: #fff;
+        padding: 0;
+    }
+
+    .certificate-wrapper {
+        padding: 0;
     }
 
     .certificate {
         box-shadow: none;
-        border: 2px solid #333;
+        border: 2px solid var(--accent);
         margin: 0;
+        padding: 2rem;
     }
 
     #confetti {
