@@ -57,6 +57,14 @@ function preloadAlternateLang(lessonId, currentLang) {
         .catch(() => { /* alternate lang not available or aborted, that's ok */ });
 }
 
+function isMobile() {
+    try {
+        return window.innerWidth <= 768;
+    } catch {
+        return false;
+    }
+}
+
 function initApp() {
     function init() {
         // Configure marked for Prism integration (marked v15 API)
@@ -79,6 +87,65 @@ function initApp() {
         const courseId = getCourseId();
         const sidebarEl = document.querySelector('.sidebar');
 
+        // Mobile hamburger menu
+        function openSidebar() {
+            sidebarEl.classList.add('open');
+            if (overlay) overlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebarEl.classList.remove('open');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        function toggleSidebar() {
+            if (sidebarEl.classList.contains('open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        }
+
+        const hamburgerBtn = document.createElement('button');
+        hamburgerBtn.className = 'hamburger-btn';
+        hamburgerBtn.setAttribute('aria-label', 'Toggle menu');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        hamburgerBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+        document.body.appendChild(hamburgerBtn);
+
+        const overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+
+        hamburgerBtn.addEventListener('click', () => {
+            toggleSidebar();
+            hamburgerBtn.setAttribute('aria-expanded', sidebarEl.classList.contains('open'));
+        });
+
+        overlay.addEventListener('click', () => {
+            closeSidebar();
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebarEl.classList.contains('open')) {
+                closeSidebar();
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Hide hamburger on desktop resize
+        function updateHamburgerVisibility() {
+            hamburgerBtn.style.display = isMobile() ? 'flex' : 'none';
+            if (!isMobile()) {
+                closeSidebar();
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        updateHamburgerVisibility();
+        window.addEventListener('resize', updateHamburgerVisibility);
+
         let courseConfig;
         if (typeof COURSE_CONFIG !== 'undefined') {
             courseConfig = COURSE_CONFIG;
@@ -93,7 +160,7 @@ function initApp() {
         }
 
         renderSidebar(sidebarEl, courseConfig);
-        initLessonNavigation(courseConfig);
+        initLessonNavigation(courseConfig, { closeSidebar: closeSidebar, hamburgerBtn: hamburgerBtn });
     }
 
     if (document.readyState === 'loading') {
@@ -164,7 +231,10 @@ function renderSidebar(sidebarEl, config) {
     sidebarEl.appendChild(nav);
 }
 
-function initLessonNavigation(config) {
+function initLessonNavigation(config, sidebarControls) {
+    var closeSidebar = sidebarControls && sidebarControls.closeSidebar;
+    var hamburgerBtn = sidebarControls && sidebarControls.hamburgerBtn;
+
     const lessonLinks = document.querySelectorAll('.lesson-list a');
     const contentArea = document.getElementById('lesson-content');
     const scrollContainer = document.querySelector('.content');
@@ -435,6 +505,10 @@ function initLessonNavigation(config) {
             const lesson = link.getAttribute('data-lesson');
             setActiveLink(link);
             loadLessonById(lesson, getCurrentLang());
+            if (isMobile() && closeSidebar) {
+                closeSidebar();
+                if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
         });
     });
 
@@ -470,7 +544,7 @@ function initLessonNavigation(config) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initApp, getCourseId, renderSidebar, initLessonNavigation, getCurrentLang, setCurrentLang, toggleLang, clearLessonCache };
+    module.exports = { initApp, getCourseId, renderSidebar, initLessonNavigation, getCurrentLang, setCurrentLang, toggleLang, clearLessonCache, isMobile };
 } else {
     initApp();
 }

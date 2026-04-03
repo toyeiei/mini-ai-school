@@ -176,7 +176,12 @@ function setupMocks() {
     const app = require('../app');
     if (app.clearLessonCache) app.clearLessonCache();
 
-    global.window = new Proxy({ location: { search: '' } }, {
+    global.window = new Proxy({ 
+        location: { search: '' }, 
+        innerWidth: 1024,
+        addEventListener(event, handler) {},
+        removeEventListener(event, handler) {}
+    }, {
         get(target, prop) {
             if (prop in target) return target[prop];
             return global[prop];
@@ -194,6 +199,7 @@ function setupMocks() {
     };
 
     global.document = {
+        body: mockDOM.body,
         querySelector(selector) { return mockDOM.body.querySelector(selector); },
         querySelectorAll(selector) { return mockDOM.body.querySelectorAll(selector); },
         getElementById(id) { return mockDOM.body.querySelector('#' + id); },
