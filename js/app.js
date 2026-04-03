@@ -1,17 +1,19 @@
 function initApp() {
     function init() {
-        // Configure marked for Prism integration using renderer
+        // Configure marked for Prism integration
         if (typeof marked !== 'undefined' && typeof Prism !== 'undefined') {
-            const renderer = new marked.Renderer();
-            renderer.code = function(code, language) {
-                const lang = language || 'javascript';
-                if (Prism.languages[lang]) {
-                    const highlighted = Prism.highlight(code, Prism.languages[lang], lang);
-                    return '<pre class="language-' + lang + '"><code class="language-' + lang + '">' + highlighted + '</code></pre>';
+            marked.use({
+                renderer: {
+                    code: function(code, language) {
+                        const lang = language || 'javascript';
+                        if (Prism.languages[lang]) {
+                            const highlighted = Prism.highlight(code, Prism.languages[lang], lang);
+                            return '<pre class="language-' + lang + '"><code class="language-' + lang + '">' + highlighted + '</code></pre>';
+                        }
+                        return '<pre><code>' + code + '</code></pre>';
+                    }
                 }
-                return '<pre><code>' + code + '</code></pre>';
-            };
-            marked.setOptions({ renderer: renderer });
+            });
         }
 
         const courseId = getCourseId();
