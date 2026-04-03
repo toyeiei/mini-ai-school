@@ -221,7 +221,7 @@ function initLessonNavigation(config) {
                 <div id="confetti"></div>
                 <div class="certificate" id="certificate">
                     <div class="cert-header">
-                        <div class="cert-logo">MiniMax AI School</div>
+                        <div class="cert-logo">Mini AI School</div>
                         <div class="cert-title">Certificate of Completion</div>
                     </div>
                     <div class="cert-body">
@@ -234,7 +234,7 @@ function initLessonNavigation(config) {
                     </div>
                     <div class="cert-footer">
                         <div class="cert-marketing">Free knowledge. Real skills. No fluff.</div>
-                        <div class="cert-school">MiniMax AI School</div>
+                        <div class="cert-school">Mini AI School</div>
                     </div>
                 </div>
                 <div class="cert-actions">
