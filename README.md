@@ -1,6 +1,6 @@
-# MiniMax AI School
+# Mini AI School
 
-A lightweight, text-based learning platform for programming fundamentals. No build tools, no frameworks, no complexity. Just you, code, and lessons.
+A lightweight, text-based learning platform for programming fundamentals. Bilingual (English/Thai) with instant language switching. No build tools, no frameworks, no complexity. Just you, code, and lessons.
 
 ---
 
@@ -44,6 +44,7 @@ There's something honest about a dark sidebar and monospace text. It says: "This
 - Clean overview of all available courses
 - Course cards with descriptions and lesson counts
 - Direct links to each course
+- Instant EN/TH language toggle (inline data attributes, zero network requests)
 
 **Course Pages**
 - Dark sidebar (25%) with lesson navigation
@@ -52,6 +53,16 @@ There's something honest about a dark sidebar and monospace text. It says: "This
 - Click-to-load markdown lessons
 - Syntax-highlighted code blocks (Prism.js)
 - Responsive layout (desktop sidebar, mobile stacked)
+- EN/TH language toggle in sidebar
+- In-memory lesson cache with background preloading for instant switching
+
+**Bilingual System**
+- Every lesson available in English (`.md`) and Thai (`.th.md`)
+- 80 lessons per language across 8 courses
+- Language preference persisted in `localStorage`
+- Graceful fallback to English if Thai translation is missing
+- Landing page uses `data-en`/`data-th` attributes for instant DOM swap
+- Course pages preload alternate language after each lesson load
 
 **Lesson System**
 - Pure markdown files with `#` headings and code blocks
@@ -69,18 +80,28 @@ There's something honest about a dark sidebar and monospace text. It says: "This
 - `prefers-reduced-motion` respected
 
 **Testing**
-- 53 tests covering configuration loading and app behavior
-- Full DOM mock environment
+- 53 tests covering configuration loading and app behavior (30 app + 23 config)
+- Full DOM mock environment with Proxy-based window, cache clearing between tests
 - Async test support
 - 100% pass rate maintained
 
-### The Three Courses
+### The Eight Courses
 
 **JavaScript Fundamentals** — Core language concepts from variables to modules
 
+**HTML & CSS Basics** — Web pages, elements, styling, layout, and your first project
+
+**Git & GitHub** — Version control, commits, branching, merging, collaboration
+
+**API Basics** — REST, HTTP methods, JSON, fetch, authentication, real-world APIs
+
 **Basic Software Engineering** — Problem-solving, algorithms, data structures, testing, DevOps
 
+**Database 101** — SQL fundamentals, tables, CRUD, joins, aggregations, database design
+
 **Basic Vibe Coding** — Working with AI assistants, prompting strategies, debugging AI output
+
+**Data Science 101** — Statistics, probability, hypothesis testing, regression, machine learning intro
 
 ---
 
@@ -112,13 +133,13 @@ HTML File (course index.html)
 app.js Reads COURSE_CONFIG (embedded JSON)
        │
        ▼
-Renders Sidebar from Config
+Renders Sidebar from Config (with EN/TH toggle)
        │
        ▼
 User Clicks Lesson
        │
        ▼
-fetch() loads /courses/[course]/lessons/[id].md
+fetch() loads /courses/[course]/lessons/[id].md (or .th.md for Thai)
        │
        ▼
 marked.parse() converts Markdown → HTML
@@ -127,40 +148,47 @@ marked.parse() converts Markdown → HTML
 Prism.highlight() adds syntax colors
        │
        ▼
-Content displayed in lesson area
+Content displayed + alternate language preloaded in background
+       │
+       ▼
+User toggles language → cached version renders instantly
 ```
 
 ### File Structure
 
 ```
 school/
-├── landing/
-│   └── index.html              # Landing page with course cards
+├── index.html              # Landing page (EN/TH toggle, course cards)
 │
 ├── courses/
 │   ├── javascript/
-│   │   ├── index.html          # Course entry point
-│   │   ├── course-config.js   # Lesson list and metadata
+│   │   ├── index.html          # Course entry point (COURSE_CONFIG embedded)
 │   │   └── lessons/
-│   │       ├── 01-intro.md
-│   │       ├── 02-basics.md
-│   │       └── ...             # 10 lessons total
+│   │       ├── 01-intro.md         # English lesson
+│   │       ├── 01-intro.th.md      # Thai translation
+│   │       └── ...                 # 10 EN + 10 TH per course
 │   │
-│   ├── software-engineering/   # Same structure
-│   └── vibe-coding/            # Same structure
+│   ├── html-css/               # Same structure (10 EN + 10 TH)
+│   ├── git-github/             # Same structure (10 EN + 10 TH)
+│   ├── api-basics/             # Same structure (10 EN + 10 TH)
+│   ├── software-engineering/   # Same structure (10 EN + 10 TH)
+│   ├── database/               # Same structure (10 EN + 10 TH)
+│   ├── vibe-coding/            # Same structure (10 EN + 10 TH)
+│   └── data-science/           # Same structure (10 EN + 10 TH)
 │
 ├── css/
 │   └── style.css               # All styles, CSS custom properties
 │
 ├── js/
-│   ├── app.js                  # Core engine (~150 lines)
+│   ├── app.js                  # Core engine (~474 lines)
+│   ├── course-config.js        # Server-side config utilities (tests only)
 │   └── tests/
 │       ├── app.test.js         # 30 app tests
 │       ├── config.test.js      # 23 config tests
-│       ├── mocks.js            # Full DOM/fetch/marked mock
+│       ├── mocks.js            # Full DOM/fetch/marked/AbortController mock
 │       └── test-runner.js      # Minimal test framework
 │
-└── index.html                  # Legacy entry (redirects to landing)
+└── README.md
 ```
 
 ---
@@ -186,7 +214,7 @@ We use vanilla JavaScript because:
 
 **3. Course Config Pattern**
 
-Each course has a `course-config.js` that exports the lesson list:
+Each course has `COURSE_CONFIG` embedded in its `index.html`:
 
 ```javascript
 var COURSE_CONFIG = {
@@ -222,7 +250,7 @@ cd school
 python3 -m http.server 3000
 
 # Visit
-http://localhost:3000/landing/index.html
+http://localhost:3000
 
 # Run tests
 node js/tests/config.test.js   # 23 tests
@@ -231,17 +259,18 @@ node js/tests/app.test.js       # 30 tests
 
 ### Adding a New Lesson
 
-1. Create `courses/[course]/lessons/XX-name.md`
-2. Add entry to `course-config.js` lesson list
-3. Refresh the page
+1. Create `courses/[course]/lessons/XX-name.md` (English)
+2. Create `courses/[course]/lessons/XX-name.th.md` (Thai translation)
+3. Add entry to `COURSE_CONFIG` in the course's `index.html`
+4. Refresh the page
 
 ### Adding a New Course
 
 1. Create `courses/[new-course]/`
-2. Copy `index.html` from existing course
+2. Copy `index.html` from an existing course
 3. Update `COURSE_CONFIG` in the copied HTML
-4. Create `lessons/` directory with `.md` files
-5. Add link to `landing/index.html`
+4. Create `lessons/` directory with `.md` and `.th.md` files
+5. Add a course card link to the landing page `index.html` (include `data-en`/`data-th` attributes)
 
 ---
 
@@ -318,13 +347,22 @@ Vanilla JS:
 
 We may add:
 
-- Lesson progress persistence (localStorage)
-- Dark/light mode toggle
 - Search across lessons
-- Course completion certificates
+- More languages beyond English and Thai
 - Mobile-optimized sidebar collapse
 
 But we'll only add what serves learning. No features for the sake of features. No gamification that rewards clicking over understanding.
+
+---
+
+## Deployment
+
+Hosted on Cloudflare Pages as a static site. Deploy with:
+
+```bash
+cd school
+npx wrangler pages deploy . --project-name mini-ai-school
+```
 
 ---
 
