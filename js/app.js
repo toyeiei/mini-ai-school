@@ -213,6 +213,9 @@ function initLessonNavigation(config) {
             year: 'numeric'
         });
 
+        // Generate random certificate ID
+        const certId = Math.random().toString(36).substring(2, 10).toUpperCase();
+
         const certHTML = `
             <div class="certificate-wrapper">
                 <div id="confetti"></div>
@@ -227,12 +230,10 @@ function initLessonNavigation(config) {
                         <p class="cert-completes">has successfully completed</p>
                         <h2 class="cert-course">${config.title}</h2>
                         <p class="cert-meta">${config.lessons.length} lessons &bull; ${completionDate}</p>
+                        <p class="cert-id">Certificate ID: ${certId}</p>
                     </div>
                     <div class="cert-footer">
-                        <div class="cert-signature">
-                            <span class="sig-line"></span>
-                            <span class="sig-label">Authorized Signature</span>
-                        </div>
+                        <div class="cert-marketing">Free knowledge. Real skills. No fluff.</div>
                         <div class="cert-school">MiniMax AI School</div>
                     </div>
                 </div>

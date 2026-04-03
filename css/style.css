@@ -351,28 +351,28 @@ body {
     margin-top: 1rem;
 }
 
+.cert-id {
+    color: var(--accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
 .cert-footer {
     border-top: 1px solid #eee;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.cert-signature {
-    text-align: center;
-}
-
-.sig-line {
-    display: block;
-    width: 150px;
-    border-bottom: 1px solid #333;
-    margin-bottom: 0.25rem;
-}
-
-.sig-label {
-    font-size: 0.75rem;
-    color: #999;
+.cert-marketing {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    font-style: italic;
 }
 
 .cert-school {
