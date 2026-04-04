@@ -41,7 +41,7 @@ SELECT name, email FROM users;
 
 Comment ช่วยให้คุณอธิบาย query ของคุณ:
 
-```
+```sql
 -- This query gets all users
 SELECT * FROM users;
 
@@ -52,7 +52,7 @@ SELECT email FROM users; /* Get emails only */
 
 SQL keyword ไม่สนใจตัวพิมพ์ใหญ่-เล็ก แต่มักนิยมใช้ตัวพิมพ์ใหญ่:
 
-```
+```sql
 -- All of these work:
 SELECT * FROM users;
 select * from users;

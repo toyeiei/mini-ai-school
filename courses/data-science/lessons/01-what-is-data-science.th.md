@@ -27,7 +27,7 @@ Data scientist ทำงานกับข้อมูลเพื่อ:
 - Library ที่ทรงพลังสำหรับการวิเคราะห์
 - เหมาะสำหรับ automation
 
-```
+```python
 # Python example
 import pandas as pd
 
