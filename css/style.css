@@ -686,6 +686,29 @@ body {
     color: #666;
 }
 
+/* Video embed container */
+.video-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-container iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 768px) {
+    .video-container iframe {
+        height: 220px;
+    }
+}
+
 .loading {
     color: #999;
     font-style: italic;

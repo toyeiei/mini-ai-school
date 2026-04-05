@@ -479,7 +479,13 @@ function initLessonNavigation(config, sidebarControls) {
             return;
         }
 
-        contentArea.innerHTML = sanitizeHTML(marked.parse(markdown));
+        // Check if lesson has a video
+        const lessonConfig = getLessonConfig(lessonId);
+        const videoHtml = lessonConfig && lessonConfig.videoId 
+            ? renderVideo(lessonConfig.videoId) 
+            : '';
+
+        contentArea.innerHTML = videoHtml + sanitizeHTML(marked.parse(markdown));
         markLessonComplete(lessonId);
 
         if (scrollContainer) {
@@ -488,6 +494,18 @@ function initLessonNavigation(config, sidebarControls) {
 
         const heading = contentArea.querySelector('h1');
         if (heading) heading.focus();
+    }
+
+    function getLessonConfig(lessonId) {
+        const config = window.COURSE_CONFIG;
+        if (!config || !config.lessons) return null;
+        return config.lessons.find(l => l.id === lessonId) || null;
+    }
+
+    function renderVideo(videoId) {
+        // Bunny Stream embed URL - replace 'YOUR_LIBRARY_ID' with actual library ID
+        const embedUrl = 'https://iframe.mediabirdcdn.com/' + videoId + '?library_id=YOUR_LIBRARY_ID';
+        return '<div class="video-container"><iframe src="' + embedUrl + '" width="100%" height="400" frameborder="0" allowfullscreen allow="fullscreen"></iframe></div>';
     }
 
     function setActiveLink(clickedLink) {
