@@ -39,11 +39,6 @@
             "@type": "Organization",
             "name": "DataRockie",
             "url": "https://datarockie.com"
-        },
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://mini-ai.datarockie.com/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
         }
     }
     </script>
@@ -53,17 +48,19 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #fafafa;
-            --bg-alt: #f0f0f0;
-            --text: #1a1a1a;
-            --text-muted: #666;
-            --accent: #6c5ce7;
-            --accent-hover: #5a4bd1;
-            --card-bg: #fff;
-            --border: #e0e0e0;
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
-            --radius: 12px;
-            --max-width: 900px;
+            --bg: #faf9f7;
+            --bg-alt: #fff5f5;
+            --text: #2d3436;
+            --text-muted: #636e72;
+            --accent-coral: #ff6b6b;
+            --accent-teal: #4ecdc4;
+            --accent-purple: #6c5ce7;
+            --accent-yellow: #ffeaa7;
+            --card-bg: #ffffff;
+            --border: #ffe0e0;
+            --shadow: 0 8px 30px rgba(255, 107, 107, 0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
         }
 
         * {
@@ -84,36 +81,47 @@
             min-height: 100vh;
         }
 
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
         /* Header */
         header {
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            background: linear-gradient(135deg, #fff5f5 0%, #f0fff4 100%);
+            border-bottom: 1px solid rgba(255, 107, 107, 0.1);
         }
 
-        .header-top {
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
         }
 
-        .header-top h1 {
-            font-size: 2rem;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-teal) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            font-size: 1.35rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
+            color: var(--text);
         }
 
-        .header-top p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        .logo-text span {
+            color: var(--accent-coral);
         }
 
         /* Language toggle */
@@ -121,10 +129,10 @@
             display: inline-flex;
             align-items: center;
             gap: 0.25rem;
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.25rem;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            padding: 0.3rem;
         }
 
         .lang-btn {
@@ -135,267 +143,548 @@
             font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            transition: background 0.2s, color 0.2s;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            transition: all 0.25s ease;
         }
 
         .lang-btn:hover {
-            background: var(--bg-alt);
+            color: var(--text);
         }
 
         .lang-btn.active {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-teal) 100%);
             color: #fff;
         }
 
         /* Hero */
         .hero {
-            padding: 4rem 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem 3rem;
             text-align: center;
         }
 
-        .hero h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            line-height: 1.4;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #fff0f0 0%, #e0fff5 100%);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge .icon {
+            font-size: 1.1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+            color: var(--text);
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto 2rem;
-            font-size: 0.9rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-coral);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Category tabs */
+        .category-tabs {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .category-tab {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            padding: 0.5rem 1.25rem;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .category-tab:hover {
+            border-color: var(--accent-coral);
+            color: var(--accent-coral);
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-teal) 100%);
+            border-color: transparent;
+            color: #fff;
         }
 
         /* Courses Grid */
         .courses {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
             display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 4rem;
         }
 
         .course-card {
             background: var(--card-bg);
-            border: 1px solid var(--border);
+            border: 2px solid transparent;
             border-radius: var(--radius);
             padding: 1.75rem;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--card-accent, var(--accent-coral)) 0%, var(--card-accent2, var(--accent-teal)) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .course-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow);
-            border-color: var(--accent);
+            border-color: var(--border);
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
         }
 
         .course-card:focus-visible {
-            outline: 2px solid var(--accent);
+            outline: 2px solid var(--accent-coral);
             outline-offset: 2px;
         }
 
-        .course-number {
-            font-size: 0.75rem;
-            color: var(--accent);
+        .course-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--card-accent, var(--accent-coral)) 0%, var(--card-accent2, var(--accent-teal)) 100%);
+            color: #fff;
+        }
+
+        .course-category {
+            font-size: 0.7rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--card-accent, var(--accent-coral));
+            margin-bottom: 0.4rem;
         }
 
         .course-card h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            color: var(--text);
         }
 
         .course-card p {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--text-muted);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .course-meta {
             display: flex;
             gap: 1rem;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
         }
 
         .course-meta span {
             display: flex;
             align-items: center;
-            gap: 0.35rem;
+            gap: 0.3rem;
+        }
+
+        .course-arrow {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--card-accent, var(--accent-coral));
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .course-card:hover .course-arrow {
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-teal) 100%);
+            color: #fff;
+        }
+
+        /* Category colors */
+        .course-card[data-category="frontend"] {
+            --card-accent: var(--accent-coral);
+            --card-accent2: #ff8e8e;
+        }
+
+        .course-card[data-category="backend"] {
+            --card-accent: var(--accent-teal);
+            --card-accent2: #7ee8e0;
+        }
+
+        .course-card[data-category="ai"] {
+            --card-accent: var(--accent-purple);
+            --card-accent2: #a29bfe;
+        }
+
+        .course-card[data-category="devops"] {
+            --card-accent: #00b894;
+            --card-accent2: #55efc4;
         }
 
         /* Footer */
         footer {
-            padding: 2rem 0;
-            text-align: center;
+            background: linear-gradient(135deg, #fff5f5 0%, #f0fff4 100%);
             border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.8rem;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        footer h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
         }
 
         footer p {
-            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-teal) 100%);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .footer-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
         }
 
         .footer-credit {
+            margin-top: 2rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            font-size: 0.75rem;
         }
 
         /* Responsive */
-        @media (max-width: 600px) {
-            .header-top h1 {
-                font-size: 1.5rem;
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 1rem;
             }
 
-            .hero {
-                padding: 2.5rem 0;
+            .hero h1 {
+                font-size: 2.2rem;
             }
 
-            .hero h2 {
-                font-size: 1.2rem;
+            .hero p {
+                font-size: 1rem;
             }
 
-            .course-card {
-                padding: 1.25rem;
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .courses {
+                grid-template-columns: 1fr;
+                padding: 0 1.25rem 3rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="header-top">
-                <h1>Mini AI School</h1>
-                <div class="lang-toggle" id="langToggle">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="th">TH</button>
-                </div>
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">🚀</div>
+                <div class="logo-text">Mini <span>AI</span> School</div>
             </div>
-            <p class="tagline" data-en="Learn programming through text-based lessons" data-th="เรียนรู้การเขียนโปรแกรมผ่านบทเรียนแบบข้อความ">Learn programming through text-based lessons</p>
+            <div class="lang-toggle" id="langToggle">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="th">TH</button>
+            </div>
         </div>
     </header>
 
-    <main class="container">
+    <main>
         <section class="hero">
-            <h2 data-en="Practical courses for building real skills" data-th="หลักสูตรปฏิบัติเพื่อสร้างทักษะจริง">Practical courses for building real skills</h2>
-            <p data-en="Ten focused courses from HTML basics to AI-assisted development." data-th="สิบหลักสูตรเข้มข้น ตั้งแต่พื้นฐาน HTML ไปจนถึงการพัฒนาด้วย AI">Ten focused courses from HTML basics to AI-assisted development.</p>
+            <div class="hero-badge">
+                <span class="icon">✨</span>
+                <span data-en="Free courses • No credit card needed" data-th="คอร์สฟรี • ไม่ต้องใช้บัตรเครดิต">Free courses • No credit card needed</span>
+            </div>
+            <h1>
+                <span data-en="Learn to build with" data-th="เรียนรู้การสร้างด้วย">Learn to build with</span><br>
+                <span class="highlight" data-en="AI & Code" data-th="AI และ Code">AI & Code</span>
+            </h1>
+            <p data-en="Ten practical courses from HTML basics to AI-assisted development. All free, all in English & Thai." data-th="สิบหลักสูตรปฏิบัติ ตั้งแต่พื้นฐาน HTML ไปจนถึงการพัฒนาด้วย AI ทั้งหมดฟรี ทั้งภาษาอังกฤษและไทย">Ten practical courses from HTML basics to AI-assisted development. All free, all in English & Thai.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label" data-en="Courses" data-th="หลักสูตร">Courses</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label" data-en="Lessons" data-th="บทเรียน">Lessons</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label" data-en="Languages" data-th="ภาษา">Languages</div>
+                </div>
+            </div>
         </section>
 
+        <div class="category-tabs">
+            <button class="category-tab active" data-filter="all" data-en="All Courses" data-th="ทุกหลักสูตร">All Courses</button>
+            <button class="category-tab" data-filter="frontend" data-en="Frontend" data-th="Frontend">Frontend</button>
+            <button class="category-tab" data-filter="backend" data-en="Backend" data-th="Backend">Backend</button>
+            <button class="category-tab" data-filter="ai" data-en="AI & Tools" data-th="AI และ Tools">AI & Tools</button>
+            <button class="category-tab" data-filter="devops" data-en="DevOps" data-th="DevOps">DevOps</button>
+        </div>
+
         <section class="courses">
-            <a href="/courses/html-css/index.html" class="course-card">
-                <div class="course-number">01</div>
+            <a href="/courses/html-css/index.html" class="course-card" data-category="frontend">
+                <div class="course-icon">🎨</div>
+                <div class="course-category" data-en="Frontend" data-th="Frontend">Frontend</div>
                 <h3 data-en="HTML & CSS Basics" data-th="พื้นฐาน HTML & CSS">HTML & CSS Basics</h3>
-                <p data-en="Build web pages from scratch: elements, styling, layout with flexbox, and your first project." data-th="สร้างเว็บเพจตั้งแต่เริ่มต้น: อิลีเมนต์, สไตล์, เลย์เอาต์ด้วย flexbox และโปรเจกต์แรกของคุณ">Build web pages from scratch: elements, styling, layout with flexbox, and your first project.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Beginner friendly" data-th="เหมาะสำหรับผู้เริ่มต้น">Beginner friendly</span>
+                <p data-en="Build web pages from scratch. Elements, styling, layout with flexbox, and your first project." data-th="สร้างเว็บเพจตั้งแต่เริ่มต้น อิลีเมนต์, สไตล์, เลย์เอาต์ด้วย flexbox และโปรเจกต์แรก">Build web pages from scratch. Elements, styling, layout with flexbox, and your first project.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>⭐ <span data-en="Beginner" data-th="ผู้เริ่มต้น">Beginner</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/javascript/index.html" class="course-card">
-                <div class="course-number">02</div>
+            <a href="/courses/javascript/index.html" class="course-card" data-category="frontend">
+                <div class="course-icon">⚡</div>
+                <div class="course-category" data-en="Frontend" data-th="Frontend">Frontend</div>
                 <h3 data-en="JavaScript Fundamentals" data-th="พื้นฐาน JavaScript">JavaScript Fundamentals</h3>
-                <p data-en="Core JavaScript: variables, functions, arrays, objects, async programming, and best practices." data-th="JavaScript หลัก: ตัวแปร, ฟังก์ชัน, อาร์เรย์, ออบเจกต์, การเขียนโปรแกรมแบบ async และแนวปฏิบัติที่ดี">Core JavaScript: variables, functions, arrays, objects, async programming, and best practices.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Beginner friendly" data-th="เหมาะสำหรับผู้เริ่มต้น">Beginner friendly</span>
+                <p data-en="Core JavaScript: variables, functions, arrays, objects, async, and best practices." data-th="JavaScript หลัก: ตัวแปร, ฟังก์ชัน, อาร์เรย์, ออบเจกต์, async และแนวปฏิบัติที่ดี">Core JavaScript: variables, functions, arrays, objects, async, and best practices.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>⭐ <span data-en="Beginner" data-th="ผู้เริ่มต้น">Beginner</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/command-line-essentials/index.html" class="course-card">
-                <div class="course-number">03</div>
+            <a href="/courses/command-line-essentials/index.html" class="course-card" data-category="devops">
+                <div class="course-icon">💻</div>
+                <div class="course-category" data-en="DevOps" data-th="DevOps">DevOps</div>
                 <h3 data-en="Command Line Essentials" data-th="พื้นฐาน Command Line">Command Line Essentials</h3>
-                <p data-en="Navigate your computer with confidence. Terminal basics, file commands, shortcuts, and productivity tips for everyone." data-th="ใช้คอมพิวเตอร์อย่างมั่นใจ พื้นฐาน Terminal, คำสั่งไฟล์, แป้นลัด และเคล็ดลับสำหรับทุกคน">Navigate your computer with confidence. Terminal basics, file commands, shortcuts, and productivity tips for everyone.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Beginner friendly" data-th="เหมาะสำหรับผู้เริ่มต้น">Beginner friendly</span>
+                <p data-en="Navigate your computer with confidence. Terminal basics, file commands, shortcuts." data-th="ใช้คอมพิวเตอร์อย่างมั่นใจ พื้นฐาน Terminal, คำสั่งไฟล์, แป้นลัด">Navigate your computer with confidence. Terminal basics, file commands, shortcuts.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>⭐ <span data-en="Beginner" data-th="ผู้เริ่มต้น">Beginner</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/prompt-engineering/index.html" class="course-card">
-                <div class="course-number">04</div>
+            <a href="/courses/prompt-engineering/index.html" class="course-card" data-category="ai">
+                <div class="course-icon">🤖</div>
+                <div class="course-category" data-en="AI & Tools" data-th="AI และ Tools">AI & Tools</div>
                 <h3 data-en="Prompt Engineering Fundamentals" data-th="พื้นฐาน Prompt Engineering">Prompt Engineering Fundamentals</h3>
-                <p data-en="Talk to AI like a pro. Learn to write clear prompts, give examples, assign roles, and get exactly what you need." data-th="สนทนากับ AI เป็นมืออาชีพ เรียนเขียน prompts ที่ชัดเจน, ให้ตัวอย่าง, มอบหมายบทบาท และได้สิ่งที่ต้องการ">Talk to AI like a pro. Learn to write clear prompts, give examples, assign roles, and get exactly what you need.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Beginner friendly" data-th="เหมาะสำหรับผู้เริ่มต้น">Beginner friendly</span>
+                <p data-en="Talk to AI like a pro. Write clear prompts, give examples, assign roles." data-th="สนทนากับ AI เป็นมืออาชีพ เขียน prompts ที่ชัดเจน, ให้ตัวอย่าง, มอบหมายบทบาท">Talk to AI like a pro. Write clear prompts, give examples, assign roles.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>🚀 <span data-en="Popular" data-th="ยอดนิยม">Popular</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/vibe-coding/index.html" class="course-card">
-                <div class="course-number">05</div>
+            <a href="/courses/vibe-coding/index.html" class="course-card" data-category="ai">
+                <div class="course-icon">✨</div>
+                <div class="course-category" data-en="AI & Tools" data-th="AI และ Tools">AI & Tools</div>
                 <h3 data-en="Basic Vibe Coding" data-th="พื้นฐาน Vibe Coding">Basic Vibe Coding</h3>
-                <p data-en="Working with AI assistants, effective prompting, reading generated code, and sustainable AI workflows." data-th="การทำงานกับ AI assistant, การพร้อมท์ที่มีประสิทธิภาพ, การอ่านโค้ดที่สร้างขึ้น และเวิร์กโฟลว์ AI ที่ยั่งยืน">Working with AI assistants, effective prompting, reading generated code, and sustainable AI workflows.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Modern workflow" data-th="เวิร์กโฟลว์สมัยใหม่">Modern workflow</span>
+                <p data-en="Working with AI assistants, effective prompting, reading code, sustainable AI workflows." data-th="การทำงานกับ AI assistant, การพร้อมท์ที่มีประสิทธิภาพ, การอ่านโค้ด, เวิร์กโฟลว์ AI">Working with AI assistants, effective prompting, reading code, sustainable AI workflows.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>🆕 <span data-en="New" data-th="ใหม่">New</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/git-github/index.html" class="course-card">
-                <div class="course-number">06</div>
+            <a href="/courses/git-github/index.html" class="course-card" data-category="devops">
+                <div class="course-icon">🔀</div>
+                <div class="course-category" data-en="DevOps" data-th="DevOps">DevOps</div>
                 <h3 data-en="Git & GitHub" data-th="Git & GitHub">Git & GitHub</h3>
-                <p data-en="Version control fundamentals: commits, branching, merging, collaboration, and best practices." data-th="พื้นฐานการควบคุมเวอร์ชัน: commits, branching, merging, การทำงานร่วมกัน และแนวปฏิบัติที่ดี">Version control fundamentals: commits, branching, merging, collaboration, and best practices.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Essential skills" data-th="ทักษะจำเป็น">Essential skills</span>
+                <p data-en="Version control fundamentals: commits, branching, merging, collaboration." data-th="พื้นฐานการควบคุมเวอร์ชัน: commits, branching, merging, การทำงานร่วมกัน">Version control fundamentals: commits, branching, merging, collaboration.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>🔧 <span data-en="Essential" data-th="จำเป็น">Essential</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/database/index.html" class="course-card">
-                <div class="course-number">07</div>
+            <a href="/courses/database/index.html" class="course-card" data-category="backend">
+                <div class="course-icon">🗄️</div>
+                <div class="course-category" data-en="Backend" data-th="Backend">Backend</div>
                 <h3 data-en="SQL Database Essentials" data-th="พื้นฐาน SQL Database">SQL Database Essentials</h3>
-                <p data-en="SQL fundamentals: tables, CRUD operations, joins, aggregations, and database design." data-th="พื้นฐาน SQL: ตาราง, การ CRUD, joins, aggregations และการออกแบบฐานข้อมูล">SQL fundamentals: tables, CRUD operations, joins, aggregations, and database design.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Data skills" data-th="ทักษะด้านข้อมูล">Data skills</span>
+                <p data-en="SQL fundamentals: tables, CRUD operations, joins, aggregations, database design." data-th="พื้นฐาน SQL: ตาราง, การ CRUD, joins, aggregations, การออกแบบฐานข้อมูล">SQL fundamentals: tables, CRUD operations, joins, aggregations, database design.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>📊 <span data-en="Data" data-th="ข้อมูล">Data</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/api-basics/index.html" class="course-card">
-                <div class="course-number">08</div>
+            <a href="/courses/api-basics/index.html" class="course-card" data-category="backend">
+                <div class="course-icon">🔗</div>
+                <div class="course-category" data-en="Backend" data-th="Backend">Backend</div>
                 <h3 data-en="API Basics" data-th="พื้นฐาน API">API Basics</h3>
-                <p data-en="Learn how web APIs work: REST, HTTP methods, JSON, fetch, and build your first API app." data-th="เรียนรู้ว่า Web API ทำงานอย่างไร: REST, HTTP methods, JSON, fetch และสร้างแอป API แรกของคุณ">Learn how web APIs work: REST, HTTP methods, JSON, fetch, and build your first API app.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Backend fundamentals" data-th="พื้นฐานแบ็กเอนด์">Backend fundamentals</span>
+                <p data-en="Learn how web APIs work: REST, HTTP methods, JSON, fetch, and build your first API app." data-th="เรียนรู้ว่า Web API ทำงานอย่างไร: REST, HTTP methods, JSON, fetch และสร้างแอป API แรก">Learn how web APIs work: REST, HTTP methods, JSON, fetch, and build your first API app.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>🔧 <span data-en="Backend" data-th="Backend">Backend</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/software-engineering/index.html" class="course-card">
-                <div class="course-number">09</div>
+            <a href="/courses/software-engineering/index.html" class="course-card" data-category="backend">
+                <div class="course-icon">🏗️</div>
+                <div class="course-category" data-en="Backend" data-th="Backend">Backend</div>
                 <h3 data-en="Basic Software Engineering" data-th="พื้นฐานวิศวกรรมซอฟต์แวร์">Basic Software Engineering</h3>
-                <p data-en="Problem solving, algorithms, data structures, design patterns, testing, and DevOps basics." data-th="การแก้ปัญหา, อัลกอริทึม, โครงสร้างข้อมูล, ดีไซน์แพทเทิร์น, การทดสอบ และพื้นฐาน DevOps">Problem solving, algorithms, data structures, design patterns, testing, and DevOps basics.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Foundational" data-th="พื้นฐาน">Foundational</span>
+                <p data-en="Problem solving, algorithms, data structures, design patterns, testing, DevOps basics." data-th="การแก้ปัญหา, อัลกอริทึม, โครงสร้างข้อมูล, ดีไซน์แพทเทิร์น, การทดสอบ, DevOps">Problem solving, algorithms, data structures, design patterns, testing, DevOps basics.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>🎯 <span data-en="Core" data-th="แกนกลาง">Core</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
 
-            <a href="/courses/data-science/index.html" class="course-card">
-                <div class="course-number">10</div>
+            <a href="/courses/data-science/index.html" class="course-card" data-category="ai">
+                <div class="course-icon">📈</div>
+                <div class="course-category" data-en="AI & Tools" data-th="AI และ Tools">AI & Tools</div>
                 <h3 data-en="Data Science as Skill" data-th="วิทยาศาสตร์ข้อมูลเป็นทักษะ">Data Science as Skill</h3>
-                <p data-en="Statistics basics: measures of center, probability, hypothesis testing, regression, and ML intro." data-th="พื้นฐานสถิติ: การวัดศูนย์กลาง, ความน่าจะเป็น, การทดสอบสมมติฐาน, การถดถอย และบทนำ ML">Statistics basics: measures of center, probability, hypothesis testing, regression, and ML intro.</p>
-                <div class="course-meta">
-                    <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span>
-                    <span data-en="Analytics" data-th="วิเคราะห์ข้อมูล">Analytics</span>
+                <p data-en="Statistics basics: measures of center, probability, hypothesis testing, regression, ML intro." data-th="พื้นฐานสถิติ: การวัดศูนย์กลาง, ความน่าจะเป็น, การทดสอบสมมติฐาน, การถดถอย, ML">Statistics basics: measures of center, probability, hypothesis testing, regression, ML intro.</p>
+                <div class="course-footer">
+                    <div class="course-meta">
+                        <span>📚 <span data-en="10 lessons" data-th="10 บทเรียน">10 lessons</span></span>
+                        <span>🧮 <span data-en="Analytics" data-th="วิเคราะห์">Analytics</span></span>
+                    </div>
+                    <div class="course-arrow">→</div>
                 </div>
             </a>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p><strong>Mini AI School</strong> — Learn programming through text-based lessons</p>
-            <p class="footer-credit">Created by DataRockie and Droid ⚡️</p>
+        <div class="footer-inner">
+            <h3 data-en="Start learning today" data-th="เริ่มเรียนวันนี้">Start learning today</h3>
+            <p data-en="No signup required. Pick a course and start." data-th="ไม่ต้องสมัคร เลือกคอร์สและเริ่มเรียนได้เลย">No signup required. Pick a course and start.</p>
+            <a href="/courses/javascript/index.html" class="footer-cta">
+                <span data-en="Begin with JavaScript" data-th="เริ่มกับ JavaScript">Begin with JavaScript</span> →
+            </a>
+            <p class="footer-credit">Created by DataRockie · Powered by curiosity ⚡</p>
         </div>
     </footer>
 
@@ -421,7 +710,7 @@
             });
             applyLang(stored);
 
-            // Handle clicks — instant swap, no network request
+            // Handle clicks
             toggle.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.dataset.lang;
@@ -429,6 +718,27 @@
                     toggle.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     applyLang(lang);
+                });
+            });
+
+            // Category filter
+            const tabs = document.querySelectorAll('.category-tab');
+            const cards = document.querySelectorAll('.course-card');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const filter = tab.dataset.filter;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    cards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
                 });
             });
         })();
