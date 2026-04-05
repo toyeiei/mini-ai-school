@@ -272,6 +272,73 @@ TestRunner.describe('removeEventListener', () => {
     });
 });
 
+TestRunner.describe('Video support', () => {
+    TestRunner.it('should prepend video container when lesson has videoId', async () => {
+        // Config with videoId
+        const videoConfig = {
+            _courseId: 'test-course',
+            title: 'Test Course',
+            lessons: [
+                { id: '01-intro', title: 'Introduction', videoId: 'video-001' }
+            ]
+        };
+        setupMocks();
+        global.COURSE_CONFIG = videoConfig;
+        setFetchResponse({ ok: true, text: async () => '# Hello' });
+        initApp();
+        fireDOMContentLoaded();
+        await wait();
+        const content = getContentArea().innerHTML;
+        assertIncludes(content, 'video-container');
+        assertIncludes(content, 'iframe');
+    });
+
+    TestRunner.it('should not prepend video when lesson has no videoId', async () => {
+        initWithResponse({ ok: true, text: async () => '# Hello' });
+        await wait();
+        const content = getContentArea().innerHTML;
+        assert(!content.includes('video-container'));
+    });
+
+    TestRunner.it('should include correct videoId in iframe src', async () => {
+        const videoConfig = {
+            _courseId: 'test-course',
+            title: 'Test Course',
+            lessons: [
+                { id: '01-intro', title: 'Introduction', videoId: 'my-video-id' }
+            ]
+        };
+        setupMocks();
+        global.COURSE_CONFIG = videoConfig;
+        setFetchResponse({ ok: true, text: async () => '# Hello' });
+        initApp();
+        fireDOMContentLoaded();
+        await wait();
+        const content = getContentArea().innerHTML;
+        assertIncludes(content, 'my-video-id');
+    });
+
+    TestRunner.it('should include video before markdown content', async () => {
+        const videoConfig = {
+            _courseId: 'test-course',
+            title: 'Test Course',
+            lessons: [
+                { id: '01-intro', title: 'Introduction', videoId: 'video-001' }
+            ]
+        };
+        setupMocks();
+        global.COURSE_CONFIG = videoConfig;
+        setFetchResponse({ ok: true, text: async () => '# Lesson Title' });
+        initApp();
+        fireDOMContentLoaded();
+        await wait();
+        const content = getContentArea().innerHTML;
+        const videoIndex = content.indexOf('video-container');
+        const headingIndex = content.indexOf('Lesson Title');
+        assert(videoIndex < headingIndex);
+    });
+});
+
 TestRunner.runAll().then(success => {
     process.exit(success ? 0 : 1);
 });
